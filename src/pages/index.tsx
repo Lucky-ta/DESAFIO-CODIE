@@ -1,5 +1,11 @@
+import HeaderComponent from "../components/Header/HeaderComponent";
+import LeftOptions from "../components/LeftOptions/LeftOptions";
+
 export default function Home() {
   return (
-    <div>Initial Page</div>
+    <body>
+      <LeftOptions />
+      <HeaderComponent />
+    </body>
   );
 }

@@ -16,14 +16,16 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "babel.config.js", "jest.config.js"  ],
+    "**/*.tsx",
+    "babel.config.js",
+    "jest.config.js"
+  ],
   "exclude": [
     "node_modules"
   ]
