@@ -6,6 +6,16 @@ export const LeftOptionContainer = styled.div`
     height: 100%;
     max-width: 22rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    @media (max-width: 960px) {
+        position: fixed;
+        bottom: 0;
+        max-width: initial;
+        max-height: 6rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+  }
 `;
 
 export const LeftOptionButton = styled.button`
@@ -23,6 +33,11 @@ export const LeftOptionButton = styled.button`
     font-weight: bold;
     margin-top: 1.1rem;
     transition: all 0.3s;
+
+    @media (max-width: 960px) {
+        margin: auto;
+        justify-content: center;
+  }
 
     cursor: pointer;
     &&:hover {

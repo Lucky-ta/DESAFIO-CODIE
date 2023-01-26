@@ -5,14 +5,24 @@ export const HeaderContainer = styled.div`
     color: white;
     width: 100%;
     max-height: 5rem;
-
     display: flex;
     gap: 1.2rem;
     padding: 0.6rem;
-    padding-left: 2.6rem;
-
     align-items: center;
     font-size: 1.4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+`;
+
+export const HeaderTitle = styled.h2`
+    @media (max-width: 560px) {
+        position: absolute;
+        top: 5.6rem;
+        left: 1rem;
+        font-size: 1.6rem;
+        color: #22375a;
+  }
 `;
 
 export const HeaderButton = styled.button`
@@ -29,6 +39,11 @@ export const HeaderButton = styled.button`
     justify-content: center;
     height: 3.6rem;
     width: 3.6rem;
+
+    @media (max-width: 560px) {
+        margin: auto;
+        margin-left: 0.2rem;
+  }
 `;  
 
 export const HeaderInput = styled.input`
@@ -39,6 +54,10 @@ export const HeaderInput = styled.input`
     height: 100%;
     padding-left: 3.6rem;
     background-color: #dc585a;
+
+    @media (max-width: 560px) {
+        width: 100%;
+  }
 
     ::placeholder {
         color: white;

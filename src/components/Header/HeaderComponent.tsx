@@ -4,7 +4,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 export default function HeaderComponent() {
   return (
     <StyledHeader.HeaderContainer>
-      <h2>Almaden...</h2>
+      <StyledHeader.HeaderTitle>Almaden...</StyledHeader.HeaderTitle>
       <StyledHeader.HeaderButton type="button">
         {<BiSearchAlt2 />}
       </StyledHeader.HeaderButton>
