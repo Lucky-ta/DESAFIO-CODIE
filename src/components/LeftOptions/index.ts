@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LeftOptionContainer = styled.div`
-    background-color: #414a4c;
+    background-color: #3d4a56;
     width: 100%;
     height: 100%;
     max-width: 22rem;
@@ -11,7 +11,7 @@ export const LeftOptionContainer = styled.div`
 export const LeftOptionButton = styled.button`
     color: white;
     background: none;
-    background-color: #232b2b;
+    background-color: #222f3b;
     border: none;
     width: 100%;
     padding: 1rem;
@@ -21,13 +21,13 @@ export const LeftOptionButton = styled.button`
     align-items: center;
     font-size: 1.3rem;
     font-weight: bold;
-    margin-top: 2rem;
+    margin-top: 1.1rem;
     transition: all 0.3s;
 
     cursor: pointer;
     &&:hover {
 
         background-color: whitesmoke;
-        color: #232b2b;
+        color: #222f3b;
     }
 `;
