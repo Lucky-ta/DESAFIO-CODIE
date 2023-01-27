@@ -19,3 +19,15 @@ export const AddPasswordButton = styled.button`
         bottom: 3em;
   }
 `;
+
+export const CloseModalButton = styled.button`
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    background: none;
+
+    position: absolute;
+    right: 2rem;
+    cursor: pointer;
+`;
