@@ -1,11 +1,12 @@
 import HeaderComponent from "../components/Header/HeaderComponent";
 import LeftOptions from "../components/LeftOptions/LeftOptions";
+import * as GlobalContainer from '../styles/global'
 
 export default function Home() {
   return (
-    <body>
+    <GlobalContainer.GlobalContainer>
       <LeftOptions />
       <HeaderComponent />
-    </body>
+    </GlobalContainer.GlobalContainer>
   );
 }

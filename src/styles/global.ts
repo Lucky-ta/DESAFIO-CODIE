@@ -1,12 +1,6 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
-const GlobalStyles = createGlobalStyle`
-  body {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-  }
-
+export const GlobalStyles = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -15,4 +9,8 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export default GlobalStyles
+export const GlobalContainer = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+`;
