@@ -31,3 +31,15 @@ export const CloseModalButton = styled.button`
     right: 2rem;
     cursor: pointer;
 `;
+
+export const Button = styled.button`
+    padding: 0.6rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border: none;
+    background-color: #b3b2b3;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 4px;
+`;

@@ -4,7 +4,7 @@ export const LeftOptionContainer = styled.div`
     background-color: #3d4a56;
     width: 100%;
     height: 100%;
-    max-width: 22rem;
+    max-width: 20rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
     @media (max-width: 960px) {
