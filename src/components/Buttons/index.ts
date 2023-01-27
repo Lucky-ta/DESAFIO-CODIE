@@ -33,15 +33,35 @@ export const CloseModalButton = styled.button`
 `;
 
 export const Button = styled.button`
+    transition: all 0.2s;
     padding: 0.6rem;
-    padding-left: 5rem;
-    padding-right: 5rem;
     border: none;
     background-color: #b3b2b3;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
     border-radius: 4px;
+    width: 23%;
+    
+
+    &&:hover {
+      background-color: black;
+      color: white;
+    }
+
+    &.secondary {
+      background-color: #b92a2c;
+      color: white;
+
+      &&:hover {
+        background-color: black;
+      }
+    }
+
+    @media (max-width: 630px) {
+        width: 100%;
+    }
+
 `;
 
 export const ShowHidePasswordButton = styled.button`
@@ -53,4 +73,8 @@ export const ShowHidePasswordButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+
+  @media (max-width: 630px) {
+       bottom: 10rem;
+  }
 `;

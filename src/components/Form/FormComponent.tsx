@@ -58,7 +58,9 @@ export default function FormComponent() {
         <StyledButtons.Button onClick={closeModal} type="button">
           Cancelar
         </StyledButtons.Button>
-        <StyledButtons.Button type="submit">Salvar</StyledButtons.Button>
+        <StyledButtons.Button className="secondary" type="submit">
+          Salvar
+        </StyledButtons.Button>
       </StyledModal.ModalButtonsContainer>
     </Form>
   );
