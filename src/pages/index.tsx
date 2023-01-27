@@ -7,6 +7,8 @@ import * as StyledButtons from "../components/Buttons";
 import { IoMdAdd } from "react-icons/io";
 import { useState } from "react";
 import Modal from "react-modal";
+import { Form } from "unform";
+import Input from "../components/Inputs/Input";
 
 export default function Home() {
   const customStyles = {
@@ -31,6 +33,11 @@ export default function Home() {
   function closeModal() {
     setIsOpen(false);
   }
+
+  const handleSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <GlobalContainer.GlobalContainer>
       <LeftOptions />
@@ -50,15 +57,17 @@ export default function Home() {
             X
           </StyledButtons.CloseModalButton>
         </StyledModal.ModalHeader>
-        <form>
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
-          <button type="button">Cancelar</button>
-          <button type="submit">Salvar</button>
-        </form>
+        <Form onSubmit={handleSubmit}>
+          <div>
+            <Input name="url" />
+            <Input name="name" />
+            <Input name="file" />
+            <Input type="email" name="email" />
+            <Input type="password" name="password" />
+            <button type="button">Cancelar</button>
+            <button type="submit">Salvar</button>
+          </div>
+        </Form>
       </Modal>
     </GlobalContainer.GlobalContainer>
   );
