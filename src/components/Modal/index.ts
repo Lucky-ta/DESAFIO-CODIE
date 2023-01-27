@@ -16,7 +16,6 @@ export const ModalContentContainer = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-gap: 1rem;
     width: 100%;
-    padding: 0.8rem;
     padding-top: 3rem;
     
 `
@@ -27,8 +26,4 @@ export const ModalButtonsContainer = styled.div`
     justify-content: flex-end;
     padding-right: 1rem;
     padding-top: 1rem;
-`;
-
-export const FormFieldName = styled.label`
-
 `;
