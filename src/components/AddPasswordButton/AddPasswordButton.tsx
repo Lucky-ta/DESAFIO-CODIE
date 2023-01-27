@@ -1,10 +1,10 @@
 import * as StyledButton from "./index";
-import { IoIosAddCircleOutline } from "react-icons/io";
+import { IoMdAdd } from "react-icons/io";
 
 export default function AddPasswordButton() {
   return (
     <StyledButton.AddPasswordButton type="button">
-      {<IoIosAddCircleOutline />}
+      {<IoMdAdd />}
     </StyledButton.AddPasswordButton>
   );
 }
