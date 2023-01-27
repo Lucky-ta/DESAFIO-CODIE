@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { useContext, useState } from "react";
 import * as StyledModal from "../Modal/index";
 import * as StyledButtons from "../Buttons/index";
 import { Form } from "unform";
@@ -8,6 +9,7 @@ import * as StyledForm from "./index";
 
 export default function FormComponent() {
   const { setIsModalOpen } = useContext(MyContext);
+  const [showPassword, setShowPassword] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -15,6 +17,10 @@ export default function FormComponent() {
 
   const handleSubmit = (data) => {
     console.log(data);
+  };
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -38,7 +44,14 @@ export default function FormComponent() {
         </StyledForm.Label>
         <StyledForm.Label htmlFor="password">
           <StyledForm.FormFieldName>Senha do site:</StyledForm.FormFieldName>
-          <Input id="password" type="password" name="password" />
+          <Input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            name="password"
+          />
+          <StyledButtons.ShowHidePasswordButton onClick={toggleShowPassword}>
+            {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+          </StyledButtons.ShowHidePasswordButton>
         </StyledForm.Label>
       </StyledModal.ModalContentContainer>
       <StyledModal.ModalButtonsContainer>

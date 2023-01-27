@@ -43,3 +43,14 @@ export const Button = styled.button`
     font-weight: bold;
     border-radius: 4px;
 `;
+
+export const ShowHidePasswordButton = styled.button`
+  display: flex;
+  position: absolute;
+  right: 2.5rem;
+  bottom: 4.7rem;
+  font-size: 1.3rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
