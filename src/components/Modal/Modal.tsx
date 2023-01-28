@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Modal from "react-modal";
 import * as StyledModal from "../Modal/index";
 import * as StyledButtons from "../Buttons/index";
@@ -33,7 +33,7 @@ export default function ModalComponent() {
       isOpen={isModalOpen}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
+      ariaHideApp={false}
     >
       <StyledModal.ModalHeader>
         <h2>Adicionar senha</h2>
