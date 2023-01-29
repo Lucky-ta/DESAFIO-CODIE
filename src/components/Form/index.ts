@@ -14,3 +14,7 @@ export const FormFieldName = styled.span`
    font-size: 1.1rem;
    color: #444654;
 `;
+
+export const FormErrorMessage = styled.span`
+    color: red;
+`;

@@ -1,25 +1,34 @@
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { useContext, useState } from "react";
-import * as StyledModal from "../Modal/index";
+import { createPassword } from "../../services/passwordsApi";
+import { DataShape } from "../../interfaces/interfaces";
 import * as StyledButtons from "../Buttons/index";
-import { Form } from "unform";
 import Input from "../../components/Inputs/Input";
 import MyContext from "../../context/MyContext";
+import * as StyledModal from "../Modal/index";
+import { useContext, useState } from "react";
 import * as StyledForm from "./index";
-import { DataShape } from "../../interfaces/interfaces";
-import { createPassword } from "../../services/passwordsApi";
+import { Form } from "unform";
+import { validateForm } from "../../yupFormValidation/yupValidation";
 
 export default function FormComponent() {
   const { setIsModalOpen } = useContext(MyContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   const handleSubmit = async (data: DataShape) => {
-    const result = await createPassword(data);
-    console.log(result);
+    const validationResult = await validateForm(data);
+    console.log(validationResult);
+
+    if (validationResult.message) {
+      return setFormError(validationResult.message);
+    } else {
+      await createPassword(data);
+      return setFormError("");
+    }
   };
 
   const toggleShowPassword = () => {
@@ -68,6 +77,9 @@ export default function FormComponent() {
           Salvar
         </StyledButtons.Button>
       </StyledModal.ModalButtonsContainer>
+      {formError.length !== 0 && (
+        <StyledForm.FormErrorMessage>{formError}</StyledForm.FormErrorMessage>
+      )}
     </Form>
   );
 }
