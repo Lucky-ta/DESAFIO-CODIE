@@ -2,12 +2,21 @@ import * as StyledPassCard from "./index";
 import * as StyledButtons from "../Buttons/index";
 import { TiSpanner } from "react-icons/ti";
 import { BiTrash } from "react-icons/bi";
+import { DataShape } from "../../interfaces/interfaces";
 
-export default function PasswordCard({ cardData }) {
+interface PasswordCardPropsShape {
+  cardData: DataShape;
+}
+
+export default function PasswordCard({ cardData }: PasswordCardPropsShape) {
+  const redirectToUrl = () => {
+    window.open(cardData.url, "_blank");
+  };
+
   return (
     <StyledPassCard.PassCardContainer>
       <StyledPassCard.PassCardContentContainer className="headerButton">
-        <StyledButtons.PasswordCardButton type="button">
+        <StyledButtons.PasswordCardButton onClick={redirectToUrl} type="button">
           Iniciar
         </StyledButtons.PasswordCardButton>
       </StyledPassCard.PassCardContentContainer>

@@ -263,6 +263,22 @@
       "email": "lucmaieski@gmail.com",
       "password": "asdffasd",
       "id": 33
+    },
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas M Marques",
+      "file": "GOOGLE",
+      "email": "lucmaieski@gmail.com",
+      "password": "asfdadfasdf",
+      "id": 34
+    },
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas M Marques",
+      "file": "GOOGLE",
+      "email": "lucmaieski@gmail.com",
+      "password": "555555555",
+      "id": 35
     }
   ]
 }

@@ -17,7 +17,6 @@ export const FileSystemContainer = styled.div`
     &.fileContent {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        background-color: yellow;
         gap: 1rem;
         padding: 0.6rem;
         padding-top: 1rem;
