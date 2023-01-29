@@ -1,22 +1,20 @@
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { validateForm } from "../../yupFormValidation/yupValidation";
+import { addPasswordToFile } from "../../utils/fileSystemFunctions";
 import { createPassword } from "../../services/api/passwordsApi";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { DataShape } from "../../interfaces/interfaces";
-import * as StyledButtons from "../Buttons/index";
 import Input from "../../components/Inputs/Input";
+import * as StyledButtons from "../Buttons/index";
 import MyContext from "../../context/MyContext";
 import * as StyledModal from "../Modal/index";
 import { useContext, useState } from "react";
 import * as StyledForm from "./index";
 import { Form } from "unform";
-import { validateForm } from "../../yupFormValidation/yupValidation";
 
 export default function FormComponent() {
-  const {
-    setIsModalOpen,
-    shouldRequestPasswords,
-    setShouldRequestPasswords,
-    setNewCurrentFile,
-  } = useContext(MyContext);
+  const { setIsModalOpen, setShouldRequestPasswords, files } =
+    useContext(MyContext);
+
   const [showPassword, setShowPassword] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -30,8 +28,8 @@ export default function FormComponent() {
       return setFormError(validationResult.message);
     } else {
       const result = await createPassword(data);
-      setNewCurrentFile(result);
 
+      addPasswordToFile(result, files);
       setIsModalOpen(false);
       setShouldRequestPasswords(true);
       return setFormError("");

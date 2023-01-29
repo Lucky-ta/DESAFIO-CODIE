@@ -10,7 +10,7 @@ export default function MyProvider({ children }: MyProviderPropsShape) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [shouldRequestPasswords, setShouldRequestPasswords] = useState(false);
   const [files, setFiles] = useState({});
-  const [newCurrentFile, setNewCurrentFile] = useState<any>({});
+  const [passwords, setPasswords] = useState([]);
 
   const data = {
     isModalOpen,
@@ -19,8 +19,8 @@ export default function MyProvider({ children }: MyProviderPropsShape) {
     setShouldRequestPasswords,
     files,
     setFiles,
-    newCurrentFile,
-    setNewCurrentFile,
+    passwords,
+    setPasswords,
   };
 
   return <MyContext.Provider value={data}>{children}</MyContext.Provider>;
