@@ -6,6 +6,8 @@ import { Form } from "unform";
 import Input from "../../components/Inputs/Input";
 import MyContext from "../../context/MyContext";
 import * as StyledForm from "./index";
+import { DataShape } from "../../interfaces/interfaces";
+import { createPassword } from "../../services/passwordsApi";
 
 export default function FormComponent() {
   const { setIsModalOpen } = useContext(MyContext);
@@ -15,8 +17,9 @@ export default function FormComponent() {
     setIsModalOpen(false);
   };
 
-  const handleSubmit = (data) => {
-    console.log(data);
+  const handleSubmit = async (data: DataShape) => {
+    const result = await createPassword(data);
+    console.log(result);
   };
 
   const toggleShowPassword = () => {
