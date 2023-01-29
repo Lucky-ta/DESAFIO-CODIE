@@ -3,16 +3,28 @@ import LeftOptions from "../components/LeftOptions/LeftOptions";
 import * as StyledButton from "../components/Buttons/index";
 import ModalComponent from "../components/Modal/Modal";
 import * as GlobalContainer from "../styles/global";
+import { useContext, useEffect, useState } from "react";
 import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
-import { useContext } from "react";
+import { getAllPasswords } from "../services/passwordsApi";
 
 export default function Home() {
-  const { setIsModalOpen } = useContext(MyContext);
+  const { setIsModalOpen, shouldRequestPasswords } = useContext(MyContext);
+  const [passwords, setPasswords] = useState([]);
 
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  useEffect(() => {
+    const fetchPasswords = async () => {
+      const allPasswords = await getAllPasswords();
+      setPasswords(allPasswords);
+    };
+    fetchPasswords();
+  }, [shouldRequestPasswords]);
+
+  console.log(passwords);
 
   return (
     <GlobalContainer.GlobalContainer>

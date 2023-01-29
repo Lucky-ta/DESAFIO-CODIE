@@ -11,7 +11,8 @@ import { Form } from "unform";
 import { validateForm } from "../../yupFormValidation/yupValidation";
 
 export default function FormComponent() {
-  const { setIsModalOpen } = useContext(MyContext);
+  const { setIsModalOpen, shouldRequestPasswords, setShouldRequestPasswords } =
+    useContext(MyContext);
   const [showPassword, setShowPassword] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -21,12 +22,12 @@ export default function FormComponent() {
 
   const handleSubmit = async (data: DataShape) => {
     const validationResult = await validateForm(data);
-    console.log(validationResult);
-
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
       await createPassword(data);
+      setIsModalOpen(false);
+      setShouldRequestPasswords(!shouldRequestPasswords);
       return setFormError("");
     }
   };
