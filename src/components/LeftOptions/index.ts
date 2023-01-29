@@ -7,7 +7,7 @@ export const LeftOptionContainer = styled.div`
     max-width: 20rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-    @media (max-width: 960px) {
+    @media (max-width: 1000px) {
         position: fixed;
         bottom: 0;
         max-width: initial;

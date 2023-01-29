@@ -17,4 +17,20 @@ export const GlobalContainer = styled.div`
     &.secondary {
       flex-direction: column;
     }
+
+    &.third {
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      gap: 1rem;
+      color: #2f2f31;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding-left: 1rem;
+      padding-top: 1rem;
+
+      span {
+        color: #707070;
+      }
+    }
 `;

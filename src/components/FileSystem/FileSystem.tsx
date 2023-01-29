@@ -1,14 +1,11 @@
 import { getAllPasswords } from "../../services/api/passwordsApi";
 import MyContext from "../../context/MyContext";
 import { useContext, useEffect } from "react";
+import * as StyledFileSysyem from "./index";
+import PasswordCard from "../PasswordsCard/PasswordCard";
 
 export default function FileSystem() {
-  const {
-    files,
-    setShouldRequestPasswords,
-    shouldRequestPasswords,
-    setPasswords,
-  } = useContext(MyContext);
+  const { files, shouldRequestPasswords, setPasswords } = useContext(MyContext);
 
   useEffect(() => {
     const fetchPasswords = async () => {
@@ -22,27 +19,25 @@ export default function FileSystem() {
   console.log(files);
 
   return (
-    <div>
+    <StyledFileSysyem.FileSystemContainer>
       {keys.length <= 0 ? (
         <span>Nenhuma senha por aqui.</span>
       ) : (
         keys.map((key) => {
           return (
-            <div>
+            <StyledFileSysyem.FileSystemContainer className="fileContainer">
               <span>
                 {key} ({files[key].length})
               </span>
-              {files[key].map((data, index) => {
-                return (
-                  <div>
-                    <h2>CARD {index}</h2>
-                  </div>
-                );
-              })}
-            </div>
+              <StyledFileSysyem.FileSystemContainer className="fileContent">
+                {files[key].map((data, index) => {
+                  return <PasswordCard cardData={data} />;
+                })}
+              </StyledFileSysyem.FileSystemContainer>
+            </StyledFileSysyem.FileSystemContainer>
           );
         })
       )}
-    </div>
+    </StyledFileSysyem.FileSystemContainer>
   );
 }

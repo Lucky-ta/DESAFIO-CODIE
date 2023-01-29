@@ -19,7 +19,7 @@ export const HeaderTitle = styled.h2`
     @media (max-width: 560px) {
         position: absolute;
         top: 5.6rem;
-        left: 1rem;
+        right: 1rem;
         font-size: 1.6rem;
         color: #22375a;
   }

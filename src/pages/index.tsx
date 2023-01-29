@@ -20,8 +20,10 @@ export default function Home() {
       <LeftOptions />
       <GlobalContainer.GlobalContainer className="secondary">
         <HeaderComponent />
-        <h2>Todos os itens</h2>
-        <FileSystem />
+        <GlobalContainer.GlobalContainer className="third">
+          <h2>Todos os itens</h2>
+          <FileSystem />
+        </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
       <ModalComponent />
       <StyledButton.AddPasswordButton

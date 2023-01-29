@@ -78,3 +78,33 @@ export const ShowHidePasswordButton = styled.button`
        bottom: 10rem;
   }
 `;
+
+export const PasswordCardButton = styled.button`
+    border: none;
+    background-color: #586777;
+    color: whitesmoke;
+
+    width: 70%;
+    height: 55%;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    &&:hover {
+    color: black;
+    background-color: whitesmoke;
+  }
+`
+
+export const PassCardActionsButton = styled.button`
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: grey;
+
+  &&:hover {
+    color: black;
+  }
+`
