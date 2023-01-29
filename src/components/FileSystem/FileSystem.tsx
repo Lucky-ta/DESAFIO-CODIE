@@ -26,7 +26,22 @@ export default function FileSystem() {
       {keys.length <= 0 ? (
         <span>Nenhuma senha por aqui.</span>
       ) : (
-        <span>{keys}</span>
+        keys.map((key) => {
+          return (
+            <div>
+              <span>
+                {key} ({files[key].length})
+              </span>
+              {files[key].map((data, index) => {
+                return (
+                  <div>
+                    <h2>CARD {index}</h2>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })
       )}
     </div>
   );
