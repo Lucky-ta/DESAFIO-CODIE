@@ -6,10 +6,13 @@ import * as GlobalContainer from "../styles/global";
 import { useContext, useEffect, useState } from "react";
 import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
-import { getAllPasswords } from "../services/passwordsApi";
+import { getAllPasswords } from "../services/api/passwordsApi";
+import * as StyledPassCard from "../components/PasswordsCard/index";
+import PasswordCard from "../components/PasswordsCard/PasswordCard";
 
 export default function Home() {
-  const { setIsModalOpen, shouldRequestPasswords } = useContext(MyContext);
+  const { setIsModalOpen, shouldRequestPasswords, files } =
+    useContext(MyContext);
   const [passwords, setPasswords] = useState([]);
 
   const openModal = () => {
@@ -29,7 +32,18 @@ export default function Home() {
   return (
     <GlobalContainer.GlobalContainer>
       <LeftOptions />
-      <HeaderComponent />
+      <GlobalContainer.GlobalContainer className="secondary">
+        <HeaderComponent />
+        <h2>Todos os itens</h2>
+
+        {files.length <= 0 ? (
+          <span>Nenhuma senha por aqui.</span>
+        ) : (
+          files.map(() => {
+            return <PasswordCard />;
+          })
+        )}
+      </GlobalContainer.GlobalContainer>
       <ModalComponent />
       <StyledButton.AddPasswordButton
         data-testid="openModal"

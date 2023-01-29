@@ -1,5 +1,5 @@
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { createPassword } from "../../services/passwordsApi";
+import { createPassword } from "../../services/api/passwordsApi";
 import { DataShape } from "../../interfaces/interfaces";
 import * as StyledButtons from "../Buttons/index";
 import Input from "../../components/Inputs/Input";

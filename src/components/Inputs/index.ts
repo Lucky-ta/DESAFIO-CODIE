@@ -5,4 +5,8 @@ export const FormInput = styled.input`
     padding: 0.4rem;
     border: 1px solid grey;
     border-radius: 4px;
+
+    &.upperInput {
+        text-transform: uppercase;
+    }
 `;

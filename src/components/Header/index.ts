@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
     max-height: 5rem;
     display: flex;
     gap: 1.2rem;
-    padding: 0.6rem;
+    padding: 1rem;
     align-items: center;
     font-size: 1.4rem;
     padding-left: 2rem;
@@ -52,6 +52,7 @@ export const HeaderInput = styled.input`
     border: none;
     width: 60%;
     height: 100%;
+    padding: 0.7rem;
     padding-left: 3.6rem;
     background-color: #dc585a;
 
