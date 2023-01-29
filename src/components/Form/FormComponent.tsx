@@ -11,8 +11,12 @@ import { Form } from "unform";
 import { validateForm } from "../../yupFormValidation/yupValidation";
 
 export default function FormComponent() {
-  const { setIsModalOpen, shouldRequestPasswords, setShouldRequestPasswords } =
-    useContext(MyContext);
+  const {
+    setIsModalOpen,
+    shouldRequestPasswords,
+    setShouldRequestPasswords,
+    setNewCurrentFile,
+  } = useContext(MyContext);
   const [showPassword, setShowPassword] = useState(false);
   const [formError, setFormError] = useState("");
 
@@ -25,9 +29,11 @@ export default function FormComponent() {
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
-      await createPassword(data);
+      const result = await createPassword(data);
+      setNewCurrentFile(result);
+
       setIsModalOpen(false);
-      setShouldRequestPasswords(!shouldRequestPasswords);
+      setShouldRequestPasswords(true);
       return setFormError("");
     }
   };
@@ -63,6 +69,7 @@ export default function FormComponent() {
             name="password"
           />
           <StyledButtons.ShowHidePasswordButton
+            type="button"
             data-testid="toggleButton"
             onClick={toggleShowPassword}
           >
