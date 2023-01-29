@@ -49,7 +49,10 @@ export default function FormComponent() {
             type={showPassword ? "text" : "password"}
             name="password"
           />
-          <StyledButtons.ShowHidePasswordButton onClick={toggleShowPassword}>
+          <StyledButtons.ShowHidePasswordButton
+            data-testid="toggleButton"
+            onClick={toggleShowPassword}
+          >
             {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
           </StyledButtons.ShowHidePasswordButton>
         </StyledForm.Label>
