@@ -1,11 +1,23 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import Modal from "react-modal";
 import * as StyledModal from "../Modal/index";
 import * as StyledButtons from "../Buttons/index";
 import MyContext from "../../context/MyContext";
 import FormComponent from "../Form/FormComponent";
+import { validateForm } from "../../yupFormValidation/yupValidation";
+import { addPasswordToFile } from "../../utils/fileSystemFunctions";
+import { createPassword } from "../../services/api/passwordsApi";
+import { DataShape } from "../../interfaces/interfaces";
 
-export default function ModalComponent() {
+interface MoalPropsShape {
+  onSubmit: (data: DataShape) => void;
+  formError: string;
+}
+
+export default function ModalComponent({
+  onSubmit,
+  formError,
+}: MoalPropsShape) {
   const customStyles: any = {
     content: {
       top: "50%",
@@ -22,7 +34,8 @@ export default function ModalComponent() {
     },
   };
 
-  const { isModalOpen, setIsModalOpen } = useContext(MyContext);
+  const { isModalOpen, setIsModalOpen, files, setShouldRequestPasswords } =
+    useContext(MyContext);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -41,7 +54,7 @@ export default function ModalComponent() {
           X
         </StyledButtons.CloseModalButton>
       </StyledModal.ModalHeader>
-      <FormComponent />
+      <FormComponent formError={formError} onSubmit={onSubmit} />
     </Modal>
   );
 }

@@ -5,7 +5,9 @@ import { BiTrash } from "react-icons/bi";
 import { DataShape } from "../../interfaces/interfaces";
 import { deletePassword } from "../../utils/fileSystemFunctions";
 import MyContext from "../../context/MyContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import FormComponent from "../Form/FormComponent";
+import ModalComponent from "../Modal/Modal";
 
 interface PasswordCardPropsShape {
   cardData: DataShape;
@@ -16,22 +18,26 @@ export default function PasswordCard({
   cardData,
   index,
 }: PasswordCardPropsShape) {
-  console.log(cardData);
+  const { files, setFiles, setIsModalOpen, isModalOpen } =
+    useContext(MyContext);
 
-  const { files, setFiles } = useContext(MyContext);
+  const [error, setError] = useState("");
 
   const redirectToUrl = () => {
     window.open(cardData.url, "_blank");
   };
 
-  const handleEditCard = () => {
+  const openModal = () => {
     console.log("vamos editar o card");
+    setIsModalOpen(!isModalOpen);
   };
 
   const handleDeleteCard = () => {
-    console.log("vamos deletar o card");
-    const result = deletePassword(files, cardData.file, index, setFiles);
-    console.log(files);
+    deletePassword(files, cardData.file, index, setFiles);
+  };
+
+  const handleEditPassword = () => {
+    console.log("EDITADO COM SUCESSO!");
   };
 
   return (
@@ -54,7 +60,7 @@ export default function PasswordCard({
 
         <StyledPassCard.PassCardContentContainer className="buttons">
           <StyledButtons.PassCardActionsButton
-            onClick={handleEditCard}
+            onClick={openModal}
             type="button"
           >
             {<TiSpanner />}
@@ -67,6 +73,7 @@ export default function PasswordCard({
           </StyledButtons.PassCardActionsButton>
         </StyledPassCard.PassCardContentContainer>
       </StyledPassCard.PassCardContentContainer>
+      <ModalComponent formError={error} onSubmit={handleEditPassword} />
     </StyledPassCard.PassCardContainer>
   );
 }

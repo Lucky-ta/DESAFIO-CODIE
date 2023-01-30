@@ -3,16 +3,36 @@ import LeftOptions from "../components/LeftOptions/LeftOptions";
 import * as StyledButton from "../components/Buttons/index";
 import ModalComponent from "../components/Modal/Modal";
 import * as GlobalContainer from "../styles/global";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
 import FileSystem from "../components/FileSystem/FileSystem";
+import { DataShape } from "../interfaces/interfaces";
+import { validateForm } from "../yupFormValidation/yupValidation";
+import { createPassword } from "../services/api/passwordsApi";
+import { addPasswordToFile } from "../utils/fileSystemFunctions";
 
 export default function Home() {
-  const { setIsModalOpen } = useContext(MyContext);
+  const { setIsModalOpen, files, setShouldRequestPasswords } =
+    useContext(MyContext);
+  const [formError, setFormError] = useState("");
 
   const openModal = () => {
     setIsModalOpen(true);
+  };
+
+  const handleSubmit = async (data: DataShape) => {
+    const validationResult = await validateForm(data);
+    if (validationResult.message) {
+      return setFormError(validationResult.message);
+    } else {
+      const result = await createPassword(data);
+
+      addPasswordToFile(result, files);
+      setIsModalOpen(false);
+      setShouldRequestPasswords(true);
+      return setFormError("");
+    }
   };
 
   return (
@@ -25,7 +45,7 @@ export default function Home() {
           <FileSystem />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
-      <ModalComponent />
+      <ModalComponent formError={formError} onSubmit={handleSubmit} />
       <StyledButton.AddPasswordButton
         data-testid="openModal"
         onClick={openModal}

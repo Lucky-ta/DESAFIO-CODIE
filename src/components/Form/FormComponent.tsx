@@ -11,29 +11,17 @@ import { useContext, useState } from "react";
 import * as StyledForm from "./index";
 import { Form } from "unform";
 
-export default function FormComponent() {
-  const { setIsModalOpen, setShouldRequestPasswords, files } =
-    useContext(MyContext);
+interface FormPropsShape {
+  onSubmit: (data: DataShape) => void;
+  formError: string;
+}
 
+export default function FormComponent({ onSubmit, formError }: FormPropsShape) {
+  const { setIsModalOpen, files } = useContext(MyContext);
   const [showPassword, setShowPassword] = useState(false);
-  const [formError, setFormError] = useState("");
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const handleSubmit = async (data: DataShape) => {
-    const validationResult = await validateForm(data);
-    if (validationResult.message) {
-      return setFormError(validationResult.message);
-    } else {
-      const result = await createPassword(data);
-
-      addPasswordToFile(result, files);
-      setIsModalOpen(false);
-      setShouldRequestPasswords(true);
-      return setFormError("");
-    }
   };
 
   const toggleShowPassword = () => {
@@ -41,7 +29,7 @@ export default function FormComponent() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={onSubmit}>
       <StyledForm.Label htmlFor="url">
         <StyledForm.FormFieldName>URL:</StyledForm.FormFieldName>
         <Input id="url" name="url" />
