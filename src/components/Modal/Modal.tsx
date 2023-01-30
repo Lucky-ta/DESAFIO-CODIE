@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import * as StyledForm from "../Form/index";
 import Modal from "react-modal";
 import * as StyledModal from "../Modal/index";
@@ -8,12 +8,12 @@ import { DataShape } from "../../interfaces/interfaces";
 import { Form } from "unform";
 import Input from "../Inputs/Input";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
 interface MoalPropsShape {
   onSubmit: (data: DataShape) => void;
   isOpen: boolean;
   onClose: (booleanValue) => void;
   initialValue?: DataShape;
+  errorMessage: string;
 }
 
 export default function ModalComponent({
@@ -21,6 +21,7 @@ export default function ModalComponent({
   initialValue,
   isOpen,
   onClose,
+  errorMessage,
 }: MoalPropsShape) {
   const customStyles: any = {
     content: {
@@ -101,6 +102,7 @@ export default function ModalComponent({
           </StyledButtons.Button>
         </StyledModal.ModalButtonsContainer>
       </Form>
+      {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
     </Modal>
   );
 }

@@ -1,3 +1,4 @@
+import { ContextMenuTrigger } from "react-contextmenu";
 import styled from "styled-components";
 
 export const PassCardContainer = styled.div`
@@ -12,6 +13,18 @@ export const PassCardContainer = styled.div`
     max-width: 20rem;
 
 `
+export const StyledContextMenuTrigger = styled(ContextMenuTrigger)`
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    min-height: 10rem;
+    border-radius: 2px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+    max-width: 20rem;
+`;
+
 export const PassCardContentContainer = styled.div`
     background-color: #b9bec5;
     min-height: 50%;

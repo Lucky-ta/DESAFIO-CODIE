@@ -14,6 +14,9 @@ import {
   deletePasswordById,
   updatePasswordById,
 } from "../../services/api/passwordsApi";
+import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
+import styled from "styled-components";
+import { validateForm } from "../../yupFormValidation/yupValidation";
 
 interface PasswordCardPropsShape {
   cardData: DataShape;
@@ -26,7 +29,7 @@ export default function PasswordCard({
 }: PasswordCardPropsShape) {
   const { files, setFiles } = useContext(MyContext);
 
-  const [error, setError] = useState("");
+  const [formError, setFormError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const redirectToUrl = () => {
@@ -48,9 +51,14 @@ export default function PasswordCard({
   };
 
   const handleEditPassword = async (formData: DataShape) => {
-    updatePassword(files, cardData.file, index, formData, setFiles);
-    await updatePasswordById(cardData.id, formData);
-    setIsModalOpen(false);
+    const validationResult = await validateForm(formData);
+    if (validationResult.message) {
+      return setFormError(validationResult.message);
+    } else {
+      updatePassword(files, cardData.file, index, formData, setFiles);
+      await updatePasswordById(cardData.id, formData);
+      setIsModalOpen(false);
+    }
   };
 
   return (
@@ -87,6 +95,7 @@ export default function PasswordCard({
         </StyledPassCard.PassCardContentContainer>
       </StyledPassCard.PassCardContentContainer>
       <ModalComponent
+        errorMessage={formError}
         initialValue={cardData}
         onClose={closeModal}
         isOpen={isModalOpen}

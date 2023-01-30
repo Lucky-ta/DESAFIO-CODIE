@@ -9,7 +9,7 @@ import { IoMdAdd } from "react-icons/io";
 import FileSystem from "../components/FileSystem/FileSystem";
 import { DataShape } from "../interfaces/interfaces";
 import { validateForm } from "../yupFormValidation/yupValidation";
-import { createPassword } from "../services/api/passwordsApi";
+import { createPassword, getAllPasswords } from "../services/api/passwordsApi";
 import { addPasswordToFile } from "../utils/fileSystemFunctions";
 
 export default function Home() {
@@ -50,6 +50,7 @@ export default function Home() {
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
       <ModalComponent
+        errorMessage={formError}
         onClose={closeModal}
         isOpen={isModalOpen}
         onSubmit={handleSubmit}
