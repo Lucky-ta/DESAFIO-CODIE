@@ -38,6 +38,5 @@ export const updatePasswordById = async (passwordId: number, updatedData: DataSh
         return response.data;
     } catch (e: any) {
         return { message: e.message }
-        
     }
 }

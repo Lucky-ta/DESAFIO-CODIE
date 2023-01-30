@@ -11,6 +11,7 @@ import { DataShape } from "../interfaces/interfaces";
 import { validateForm } from "../yupFormValidation/yupValidation";
 import { createPassword, getAllPasswords } from "../services/api/passwordsApi";
 import { addPasswordToFile } from "../utils/fileSystemFunctions";
+import { getFiles } from "../services/api/filesApi";
 
 export default function Home() {
   const { files, setShouldRequestPasswords } = useContext(MyContext);
@@ -19,12 +20,13 @@ export default function Home() {
 
   const handleSubmit = async (data: DataShape) => {
     const validationResult = await validateForm(data);
+
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
       const result = await createPassword(data);
 
-      addPasswordToFile(result, files);
+      addPasswordToFile(result.file, result);
       setIsModalOpen(false);
       return setShouldRequestPasswords(true);
     }
