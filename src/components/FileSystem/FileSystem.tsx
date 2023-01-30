@@ -3,20 +3,21 @@ import MyContext from "../../context/MyContext";
 import { useContext, useEffect } from "react";
 import * as StyledFileSysyem from "./index";
 import PasswordCard from "../PasswordsCard/PasswordCard";
+import useSWR from "swr";
 
 export default function FileSystem() {
   const { files, shouldRequestPasswords, setPasswords } = useContext(MyContext);
 
+  const { data, error, isLoading } = useSWR("/", () => getAllPasswords());
+  console.log(data);
+
   useEffect(() => {
-    const fetchPasswords = async () => {
-      const allPasswords = await getAllPasswords();
-      setPasswords(allPasswords);
-    };
-    fetchPasswords();
+    if (!error) {
+      setPasswords(data);
+    }
   }, [shouldRequestPasswords]);
 
   const keys = Object.keys(files);
-  console.log(files);
 
   return (
     <StyledFileSysyem.FileSystemContainer>
@@ -38,6 +39,8 @@ export default function FileSystem() {
           );
         })
       )}
+      {error && <div>failed to load</div>}
+      {isLoading && <div>Loading...</div>}
     </StyledFileSysyem.FileSystemContainer>
   );
 }

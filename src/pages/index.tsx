@@ -14,9 +14,8 @@ import { addPasswordToFile } from "../utils/fileSystemFunctions";
 
 export default function Home() {
   const { files, setShouldRequestPasswords } = useContext(MyContext);
-  const [formError, setFormError] = useState("");
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formError, setFormError] = useState("");
 
   const handleSubmit = async (data: DataShape) => {
     const validationResult = await validateForm(data);
