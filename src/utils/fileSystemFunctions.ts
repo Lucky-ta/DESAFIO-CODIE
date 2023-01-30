@@ -10,4 +10,19 @@ export const addPasswordToFile = (newCurrentFile: DataShape, files: FileShape) =
     }
     // Cria novo arquivo
     files[newCurrentFile.file] = [newCurrentFile];
-  };
+};
+
+export const deletePassword = (files: FileShape, key: string, passwordIndex: number, setFiles: any) => {
+  const { [key]: deletedPasswords, ...newFiles } = files;
+  deletedPasswords.splice(passwordIndex, 1);
+
+  if (deletedPasswords.length === 0) {
+    setFiles(newFiles);
+    return;
+  }
+
+  setFiles({
+    ...newFiles,
+    [key]: deletedPasswords
+  });
+};

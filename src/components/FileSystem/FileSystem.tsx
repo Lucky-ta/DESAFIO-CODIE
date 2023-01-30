@@ -31,7 +31,7 @@ export default function FileSystem() {
               </span>
               <StyledFileSysyem.FileSystemContainer className="fileContent">
                 {files[key].map((data, index) => {
-                  return <PasswordCard cardData={data} />;
+                  return <PasswordCard index={index} cardData={data} />;
                 })}
               </StyledFileSysyem.FileSystemContainer>
             </StyledFileSysyem.FileSystemContainer>
