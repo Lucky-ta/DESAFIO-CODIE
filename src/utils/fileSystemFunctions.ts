@@ -26,3 +26,16 @@ export const deletePassword = (files: FileShape, key: string, passwordIndex: num
     [key]: deletedPasswords
   });
 };
+
+export const updatePassword = ( files: FileShape,
+  key: string,
+  passwordIndex: number,
+  updatedPassword: DataShape,
+  setFiles: any) => {
+
+
+  const passwords = files[key];
+  passwords[passwordIndex] = updatedPassword;
+
+  setFiles({ ...files, [key]: passwords });
+};

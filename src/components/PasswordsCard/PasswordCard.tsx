@@ -3,7 +3,10 @@ import * as StyledButtons from "../Buttons/index";
 import { TiSpanner } from "react-icons/ti";
 import { BiTrash } from "react-icons/bi";
 import { DataShape } from "../../interfaces/interfaces";
-import { deletePassword } from "../../utils/fileSystemFunctions";
+import {
+  deletePassword,
+  updatePassword,
+} from "../../utils/fileSystemFunctions";
 import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
 import ModalComponent from "../Modal/Modal";
@@ -44,12 +47,10 @@ export default function PasswordCard({
     await deletePasswordById(cardData.id);
   };
 
-  const handleEditPassword = async (formData) => {
-    const result = await updatePasswordById(cardData.id, formData);
-    console.log("dados atualizados: ", result);
-    console.log("dados atuais: ", formData);
-
-    console.log("EDITADO COM SUCESSO!");
+  const handleEditPassword = async (formData: DataShape) => {
+    updatePassword(files, cardData.file, index, formData, setFiles);
+    await updatePasswordById(cardData.id, formData);
+    setIsModalOpen(false);
   };
 
   return (

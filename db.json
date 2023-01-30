@@ -2,11 +2,19 @@
   "create": [
     {
       "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-      "name": "Lucas M",
+      "name": "Lucas",
       "file": "GOOGLE",
       "email": "lucmaieski@gmail.com",
-      "password": "asdfadsfa",
+      "password": "sdfsafasf",
       "id": 1
+    },
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas M Marquess",
+      "file": "SDFFADS",
+      "email": "lucmaieski@gmail.com",
+      "password": "fasdfadfaf",
+      "id": 2
     }
   ]
 }
