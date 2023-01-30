@@ -29,3 +29,15 @@ export const deletePasswordById = async (passwordId: number) => {
         return { message: e.message }
     }
 }
+
+export const updatePasswordById = async (passwordId: number, updatedData: DataShape) => {
+    try {
+        const response = await AXIOS_API.put(`/create/${passwordId}`, updatedData, {
+            headers: {'Content-Type': 'application/json'}
+        });
+        return response.data;
+    } catch (e: any) {
+        return { message: e.message }
+        
+    }
+}

@@ -7,7 +7,10 @@ import { deletePassword } from "../../utils/fileSystemFunctions";
 import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
 import ModalComponent from "../Modal/Modal";
-import { deletePasswordById } from "../../services/api/passwordsApi";
+import {
+  deletePasswordById,
+  updatePasswordById,
+} from "../../services/api/passwordsApi";
 
 interface PasswordCardPropsShape {
   cardData: DataShape;
@@ -36,12 +39,16 @@ export default function PasswordCard({
     setIsModalOpen(false);
   };
 
-  const handleDeleteCard = () => {
+  const handleDeleteCard = async () => {
     deletePassword(files, cardData.file, index, setFiles);
-    deletePasswordById(cardData.id);
+    await deletePasswordById(cardData.id);
   };
 
-  const handleEditPassword = () => {
+  const handleEditPassword = async (formData) => {
+    const result = await updatePasswordById(cardData.id, formData);
+    console.log("dados atualizados: ", result);
+    console.log("dados atuais: ", formData);
+
     console.log("EDITADO COM SUCESSO!");
   };
 
