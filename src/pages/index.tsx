@@ -13,13 +13,10 @@ import { createPassword } from "../services/api/passwordsApi";
 import { addPasswordToFile } from "../utils/fileSystemFunctions";
 
 export default function Home() {
-  const { setIsModalOpen, files, setShouldRequestPasswords } =
-    useContext(MyContext);
+  const { files, setShouldRequestPasswords } = useContext(MyContext);
   const [formError, setFormError] = useState("");
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (data: DataShape) => {
     const validationResult = await validateForm(data);
@@ -30,9 +27,16 @@ export default function Home() {
 
       addPasswordToFile(result, files);
       setIsModalOpen(false);
-      setShouldRequestPasswords(true);
-      return setFormError("");
+      return setShouldRequestPasswords(true);
     }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -45,7 +49,11 @@ export default function Home() {
           <FileSystem />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
-      <ModalComponent formError={formError} onSubmit={handleSubmit} />
+      <ModalComponent
+        onClose={closeModal}
+        isOpen={isModalOpen}
+        onSubmit={handleSubmit}
+      />
       <StyledButton.AddPasswordButton
         data-testid="openModal"
         onClick={openModal}

@@ -1,22 +1,26 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import * as StyledForm from "../Form/index";
 import Modal from "react-modal";
 import * as StyledModal from "../Modal/index";
 import * as StyledButtons from "../Buttons/index";
 import MyContext from "../../context/MyContext";
-import FormComponent from "../Form/FormComponent";
-import { validateForm } from "../../yupFormValidation/yupValidation";
-import { addPasswordToFile } from "../../utils/fileSystemFunctions";
-import { createPassword } from "../../services/api/passwordsApi";
 import { DataShape } from "../../interfaces/interfaces";
+import { Form } from "unform";
+import Input from "../Inputs/Input";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 interface MoalPropsShape {
   onSubmit: (data: DataShape) => void;
-  formError: string;
+  isOpen: boolean;
+  onClose: (booleanValue) => void;
+  initialValue?: DataShape;
 }
 
 export default function ModalComponent({
   onSubmit,
-  formError,
+  initialValue,
+  isOpen,
+  onClose,
 }: MoalPropsShape) {
   const customStyles: any = {
     content: {
@@ -33,28 +37,70 @@ export default function ModalComponent({
       textAlign: "center",
     },
   };
+  const [showPassword, setShowPassword] = useState(false);
 
-  const { isModalOpen, setIsModalOpen, files, setShouldRequestPasswords } =
-    useContext(MyContext);
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
     <Modal
-      isOpen={isModalOpen}
-      onRequestClose={closeModal}
+      isOpen={isOpen}
+      onRequestClose={onClose}
       style={customStyles}
       ariaHideApp={false}
     >
       <StyledModal.ModalHeader>
         <h2>Adicionar senha</h2>
-        <StyledButtons.CloseModalButton onClick={closeModal}>
+        <StyledButtons.CloseModalButton onClick={onClose}>
           X
         </StyledButtons.CloseModalButton>
       </StyledModal.ModalHeader>
-      <FormComponent formError={formError} onSubmit={onSubmit} />
+      <Form initialData={initialValue} onSubmit={onSubmit}>
+        <StyledForm.Label htmlFor="url">
+          <StyledForm.FormFieldName>URL:</StyledForm.FormFieldName>
+          <Input id="url" name="url" />
+        </StyledForm.Label>
+        <StyledModal.ModalContentContainer>
+          <StyledForm.Label htmlFor="name">
+            <StyledForm.FormFieldName>Nome:</StyledForm.FormFieldName>
+            <Input id="name" name="name" />
+          </StyledForm.Label>
+          <StyledForm.Label htmlFor="file">
+            <StyledForm.FormFieldName>Pasta:</StyledForm.FormFieldName>
+            <Input id="file" name="file" />
+          </StyledForm.Label>
+          <StyledForm.Label htmlFor="email">
+            <StyledForm.FormFieldName>
+              Nome de usuário:
+            </StyledForm.FormFieldName>
+            <Input id="email" type="email" name="email" />
+          </StyledForm.Label>
+          <StyledForm.Label htmlFor="password">
+            <StyledForm.FormFieldName>Senha do site:</StyledForm.FormFieldName>
+            <Input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+            />
+            <StyledButtons.ShowHidePasswordButton
+              type="button"
+              data-testid="toggleButton"
+              onClick={toggleShowPassword}
+            >
+              {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+            </StyledButtons.ShowHidePasswordButton>
+          </StyledForm.Label>
+        </StyledModal.ModalContentContainer>
+        <StyledModal.ModalButtonsContainer>
+          <StyledButtons.Button onClick={onClose} type="button">
+            Cancelar
+          </StyledButtons.Button>
+          <StyledButtons.Button className="secondary" type="submit">
+            Salvar
+          </StyledButtons.Button>
+        </StyledModal.ModalButtonsContainer>
+      </Form>
     </Modal>
   );
 }

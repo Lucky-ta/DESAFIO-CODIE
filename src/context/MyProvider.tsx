@@ -7,14 +7,11 @@ interface MyProviderPropsShape {
 }
 
 export default function MyProvider({ children }: MyProviderPropsShape) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [shouldRequestPasswords, setShouldRequestPasswords] = useState(false);
   const [files, setFiles] = useState({});
   const [passwords, setPasswords] = useState([]);
 
   const data = {
-    isModalOpen,
-    setIsModalOpen,
     shouldRequestPasswords,
     setShouldRequestPasswords,
     files,

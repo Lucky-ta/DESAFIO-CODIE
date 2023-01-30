@@ -6,7 +6,6 @@ import { DataShape } from "../../interfaces/interfaces";
 import { deletePassword } from "../../utils/fileSystemFunctions";
 import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
-import FormComponent from "../Form/FormComponent";
 import ModalComponent from "../Modal/Modal";
 
 interface PasswordCardPropsShape {
@@ -18,10 +17,10 @@ export default function PasswordCard({
   cardData,
   index,
 }: PasswordCardPropsShape) {
-  const { files, setFiles, setIsModalOpen, isModalOpen } =
-    useContext(MyContext);
+  const { files, setFiles } = useContext(MyContext);
 
   const [error, setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const redirectToUrl = () => {
     window.open(cardData.url, "_blank");
@@ -29,7 +28,11 @@ export default function PasswordCard({
 
   const openModal = () => {
     console.log("vamos editar o card");
-    setIsModalOpen(!isModalOpen);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   const handleDeleteCard = () => {
@@ -73,7 +76,12 @@ export default function PasswordCard({
           </StyledButtons.PassCardActionsButton>
         </StyledPassCard.PassCardContentContainer>
       </StyledPassCard.PassCardContentContainer>
-      <ModalComponent formError={error} onSubmit={handleEditPassword} />
+      <ModalComponent
+        initialValue={cardData}
+        onClose={closeModal}
+        isOpen={isModalOpen}
+        onSubmit={handleEditPassword}
+      />
     </StyledPassCard.PassCardContainer>
   );
 }
