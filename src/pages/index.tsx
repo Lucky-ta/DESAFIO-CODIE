@@ -3,7 +3,7 @@ import LeftOptions from "../components/LeftOptions/LeftOptions";
 import * as StyledButton from "../components/Buttons/index";
 import ModalComponent from "../components/Modal/Modal";
 import * as GlobalContainer from "../styles/global";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
 import FileSystem from "../components/FileSystem/FileSystem";
@@ -14,9 +14,11 @@ import { addPasswordToFile } from "../utils/fileSystemFunctions";
 import { getFiles } from "../services/api/filesApi";
 
 export default function Home() {
-  const { files, setShouldRequestPasswords } = useContext(MyContext);
+  const { files, setShouldRequestPasswords, shouldRequestPasswords } =
+    useContext(MyContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formError, setFormError] = useState("");
+  const [data, setData] = useState([]);
 
   const handleSubmit = async (data: DataShape) => {
     const validationResult = await validateForm(data);
@@ -26,9 +28,9 @@ export default function Home() {
     } else {
       const result = await createPassword(data);
 
-      addPasswordToFile(result.file, result);
+      await addPasswordToFile(result.file, result);
       setIsModalOpen(false);
-      return setShouldRequestPasswords(true);
+      return setShouldRequestPasswords(!shouldRequestPasswords);
     }
   };
 
@@ -40,6 +42,14 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getFiles();
+      setData(response);
+    };
+    fetchData();
+  }, [shouldRequestPasswords]);
+
   return (
     <GlobalContainer.GlobalContainer>
       <LeftOptions />
@@ -47,7 +57,7 @@ export default function Home() {
         <HeaderComponent />
         <GlobalContainer.GlobalContainer className="third">
           <h2>Todos os itens</h2>
-          <FileSystem />
+          <FileSystem data={data} />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
       <ModalComponent

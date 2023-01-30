@@ -6,8 +6,7 @@ export const getFiles = async () => {
       const response = await AXIOS_API.get('/files');
       return response.data;
     } catch (error) {
-      console.error(error);
-      return [];
+      return error.message;
     }
   };
 

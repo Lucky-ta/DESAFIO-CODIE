@@ -5,15 +5,12 @@ export const addPasswordToFile = async (fileName: string, password: DataShape) =
   const allFiles = await getFiles();
   const isFileExists = allFiles.filter((file) => file.fileName === fileName);
 
-  console.log(isFileExists);
-  
   if (isFileExists.length !== 0) {
     const result = await addPassword(fileName, password);
-    return console.log("adicionado: ", result);
-
+    return result;
   }
   const result = await createFile(password)
-  return console.log("criado: ", result);
+  return result;
 
 };
 

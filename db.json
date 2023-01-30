@@ -18,11 +18,27 @@
     },
     {
       "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-      "name": "Lucas M Marques",
+      "name": "Lucas M ",
       "file": "TTT",
-      "email": "lucmaieski@gmail.com",
-      "password": "fadfasdfa",
+      "email": "lucmaieski@hotmail.com",
+      "password": "fasdfasf",
       "id": 3
+    },
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas M Marques",
+      "file": "GOOGLE",
+      "email": "lucmaieski@gmail.com",
+      "password": "asdfafd",
+      "id": 4
+    },
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas M",
+      "file": "FASDFASFD",
+      "email": "lucasmaieski@gmail.com",
+      "password": "adsfadfa",
+      "id": 5
     }
   ],
   "files": [
@@ -44,6 +60,14 @@
           "email": "lucmaieski@hotmail.com",
           "password": "asdffdaf",
           "id": 2
+        },
+        {
+          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+          "name": "Lucas M Marques",
+          "file": "GOOGLE",
+          "email": "lucmaieski@gmail.com",
+          "password": "asdfafd",
+          "id": 4
         }
       ],
       "id": 1675116080557
@@ -53,14 +77,28 @@
       "passwords": [
         {
           "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-          "name": "Lucas M Marques",
+          "name": "Lucas M ",
           "file": "TTT",
-          "email": "lucmaieski@gmail.com",
-          "password": "fadfasdfa",
+          "email": "lucmaieski@hotmail.com",
+          "password": "fasdfasf",
           "id": 3
         }
       ],
-      "id": 1675116108220
+      "id": 1675119911448
+    },
+    {
+      "fileName": "FASDFASFD",
+      "passwords": [
+        {
+          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+          "name": "Lucas M",
+          "file": "FASDFASFD",
+          "email": "lucasmaieski@gmail.com",
+          "password": "adsfadfa",
+          "id": 5
+        }
+      ],
+      "id": 1675120267208
     }
   ]
 }
