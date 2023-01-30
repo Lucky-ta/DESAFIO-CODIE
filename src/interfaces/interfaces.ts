@@ -4,4 +4,9 @@ export interface DataShape {
     file: string,
     email: string,
     password: string,
+    id?: number,
+};
+
+export interface FileShape {
+    [key: string]: DataShape[];
 }

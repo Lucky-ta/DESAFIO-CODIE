@@ -7,6 +7,7 @@ import { deletePassword } from "../../utils/fileSystemFunctions";
 import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
 import ModalComponent from "../Modal/Modal";
+import { deletePasswordById } from "../../services/api/passwordsApi";
 
 interface PasswordCardPropsShape {
   cardData: DataShape;
@@ -37,6 +38,7 @@ export default function PasswordCard({
 
   const handleDeleteCard = () => {
     deletePassword(files, cardData.file, index, setFiles);
+    deletePasswordById(cardData.id);
   };
 
   const handleEditPassword = () => {

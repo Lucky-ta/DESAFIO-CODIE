@@ -1,4 +1,4 @@
-import { DataShape } from "../interfaces/interfaces";
+import { DataShape } from "../../interfaces/interfaces";
 import AXIOS_API from "./api";
 
 export const createPassword = async (data: DataShape) => {
@@ -15,6 +15,15 @@ export const createPassword = async (data: DataShape) => {
 export const getAllPasswords = async () => {
     try {
         const response = await AXIOS_API.get('/create');
+        return response.data;
+    } catch (e: any) {
+        return { message: e.message }
+    }
+}
+
+export const deletePasswordById = async (passwordId: number) => {
+    try {
+        const response = await AXIOS_API.delete(`/create/${passwordId}`);
         return response.data;
     } catch (e: any) {
         return { message: e.message }
