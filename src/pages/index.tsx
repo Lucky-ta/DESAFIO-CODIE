@@ -14,7 +14,7 @@ import { addPasswordToFile } from "../utils/fileSystemFunctions";
 import { getFiles } from "../services/api/filesApi";
 
 export default function Home() {
-  const { files, setShouldRequestPasswords, shouldRequestPasswords } =
+  const { setShouldRequestPasswords, shouldRequestPasswords, searchedFile } =
     useContext(MyContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formError, setFormError] = useState("");
@@ -54,10 +54,10 @@ export default function Home() {
     <GlobalContainer.GlobalContainer>
       <LeftOptions />
       <GlobalContainer.GlobalContainer className="secondary">
-        <HeaderComponent />
+        <HeaderComponent data={data} />
         <GlobalContainer.GlobalContainer className="third">
           <h2>Todos os itens</h2>
-          <FileSystem data={data} />
+          <FileSystem data={searchedFile ? searchedFile : data} />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
       <ModalComponent

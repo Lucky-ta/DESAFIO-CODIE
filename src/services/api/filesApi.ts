@@ -58,7 +58,7 @@ export const deletePassword = async (fileName: string, fileId: number, passwordI
     const updatedPasswords = file.passwords.filter((password: any) => password.id !== passwordId);
     
     try {
-        const response = await AXIOS_API.patch(`/files/${fileId}`, { ...file, passwords: updatedPasswords }, {
+        const response = await AXIOS_API.patch(`/files/${fileId}`, { passwords: updatedPasswords }, {
           headers: {'Content-Type': 'application/json'}
         });
         

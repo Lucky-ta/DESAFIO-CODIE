@@ -1,16 +1,24 @@
 import * as StyledHeader from "./index";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { useContext } from "react";
 import MyContext from "../../context/MyContext";
+import { useContext } from "react";
+import { DataShape, FileShape } from "../../interfaces/interfaces";
 
-export default function HeaderComponent() {
-  const { files } = useContext(MyContext);
+export default function HeaderComponent({ data }) {
+  const { setSearchedFile } = useContext(MyContext);
 
-  const filterFiles = ({ value }) => {
-    console.log(value);
-    console.log(files);
+  const filterFiles = ({ value: word }) => {
+    const wordToLowerCase = word.toString().toLowerCase();
 
-    const filteredFiles = files;
+    const dataFilter = data.filter((object: FileShape) => {
+      return object.passwords.some((pass: DataShape) => {
+        return Object.values(pass).some((val) =>
+          val.toString().toLowerCase().includes(wordToLowerCase)
+        );
+      });
+    });
+
+    return setSearchedFile(dataFilter);
   };
 
   return (

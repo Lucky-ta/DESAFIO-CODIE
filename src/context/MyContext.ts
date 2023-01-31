@@ -6,6 +6,8 @@ export type ContextDataShape = {
     setShouldRequestPasswords: (value: boolean) => void;
     passwords: DataShape[];
     setPasswords: (data: DataShape[]) => void;
+    searchedFile: FileShape;
+    setSearchedFile: (value: FileShape) => void;
 }
 
 const MyContext = createContext<ContextDataShape>(null);
