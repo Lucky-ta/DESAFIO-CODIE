@@ -8,31 +8,21 @@ import { getFiles } from "../../services/api/filesApi";
 
 export default function FileSystem({ data }) {
   return (
-    // <StyledFileSysyem.FileSystemContainer>
-    //   {keys.length <= 0 ? (
-    //     <span>Nenhuma senha por aqui.</span>
-    //   ) : (
-    //     keys.map((key) => {
-    //       return (
-    //         <StyledFileSysyem.FileSystemContainer className="fileContainer">
-    //           <span>
-    //             {key} ({files[key].length})
-    //           </span>
-    //           <StyledFileSysyem.FileSystemContainer className="fileContent">
-    //             {files[key].map((data, index) => {
-    //               return <PasswordCard index={index} cardData={data} />;
-    //             })}
-    //           </StyledFileSysyem.FileSystemContainer>
-    //         </StyledFileSysyem.FileSystemContainer>
-    //       );
-    //     })
-    //   )}
-
-    // </StyledFileSysyem.FileSystemContainer>
-    <div>
-      {data.map(({ fileName }) => {
-        return <h3>{fileName}</h3>;
+    <StyledFileSysyem.FileSystemContainer>
+      {data.map(({ fileName, passwords }) => {
+        return (
+          <StyledFileSysyem.FileSystemContainer>
+            <h3>
+              {fileName} ({passwords.length})
+            </h3>
+            <StyledFileSysyem.FileSystemContainer className="passwordsContainer">
+              {passwords.map((password, index) => {
+                return <PasswordCard index={index} cardData={password} />;
+              })}
+            </StyledFileSysyem.FileSystemContainer>
+          </StyledFileSysyem.FileSystemContainer>
+        );
       })}
-    </div>
+    </StyledFileSysyem.FileSystemContainer>
   );
 }
