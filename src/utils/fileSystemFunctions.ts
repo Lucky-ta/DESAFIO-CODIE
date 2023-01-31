@@ -1,5 +1,5 @@
 import { DataShape, FileShape } from "../interfaces/interfaces";
-import { addPassword, checkIfPasswordIsUnique, createFile, deleteFile, deletePassword, getFiles } from "../services/api/filesApi";
+import { addPassword, checkIfPasswordIsUnique, createFile, deleteFile, deletePassword, getFiles, updatePassword } from "../services/api/filesApi";
 import { deletePasswordById } from "../services/api/passwordsApi";
 
 export const addPasswordToFile = async (fileName: string, password: DataShape) => {
@@ -30,15 +30,11 @@ export const deletePasswordFromFile = async (fileName: string, passwordId: numbe
 };
 
 
-export const updatePassword = ( files: FileShape,
-  key: string,
-  passwordIndex: number,
-  updatedPassword: DataShape,
-  setFiles: any) => {
+export const updatePasswordService = async (fileName: string, updatedPassword: DataShape) => {
+  const fileId = await checkIfPasswordIsUnique(fileName);
 
+  const r =  await updatePassword(fileName, fileId.data, updatedPassword);
 
-  const passwords = files[key];
-  passwords[passwordIndex] = updatedPassword;
-
-  setFiles({ ...files, [key]: passwords });
+  console.log(r);
+  
 };

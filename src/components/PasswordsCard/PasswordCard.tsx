@@ -5,12 +5,13 @@ import { BiTrash } from "react-icons/bi";
 import { DataShape } from "../../interfaces/interfaces";
 import {
   deletePasswordFromFile,
-  updatePassword,
+  updatePasswordService,
 } from "../../utils/fileSystemFunctions";
 import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
 import ModalComponent from "../Modal/Modal";
 import { validateForm } from "../../yupFormValidation/yupValidation";
+import { updatePasswordById } from "../../services/api/passwordsApi";
 
 interface PasswordCardPropsShape {
   cardData: DataShape;
@@ -21,7 +22,7 @@ export default function PasswordCard({
   cardData,
   index,
 }: PasswordCardPropsShape) {
-  const { files, setFiles, setShouldRequestPasswords, shouldRequestPasswords } =
+  const { setShouldRequestPasswords, shouldRequestPasswords } =
     useContext(MyContext);
 
   const [formError, setFormError] = useState("");
@@ -51,8 +52,10 @@ export default function PasswordCard({
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
-      updatePassword(files, cardData.file, index, formData, setFiles);
+      const updatedUser = await updatePasswordById(cardData.id, formData);
+      await updatePasswordService(cardData.file, updatedUser);
       setIsModalOpen(false);
+      return setShouldRequestPasswords(!shouldRequestPasswords);
     }
   };
 

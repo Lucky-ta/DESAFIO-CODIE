@@ -68,6 +68,36 @@ export const deletePassword = async (fileName: string, fileId: number, passwordI
     }
 }
 
+export const updatePassword = async (fileName: string, fileId: number, updatedPassword: DataShape) => {
+  const files = await AXIOS_API.get('/files');
+  const file = files.data.find((file: any) => file.fileName === fileName && file.id === fileId);
+
+  if (!file) {
+  return { error: 'File with name "${fileName}" and id "${fileId}" not found '};
+  }
+
+  const passwordIndex = file.passwords.findIndex((password: any) => password.id === updatedPassword.id);
+
+  if (passwordIndex === -1) {
+  return { error: 'Password with id "${updatedPassword.id}" not found' };
+  }
+
+  console.log(updatedPassword);
+  
+  file.passwords[passwordIndex] = updatedPassword;
+
+  try {
+    const response = await AXIOS_API.patch(`/files/${fileId}`, file, {
+    headers: { 'Content-Type': 'application/json' }
+    });
+    console.log(response.data);
+    
+    return response.data;
+    } catch (error) {
+    return error.message;
+    }
+  }
+
 
 export const checkIfPasswordIsUnique = async (fileName: string) => {
     try {
