@@ -8,14 +8,11 @@ interface MyProviderPropsShape {
 
 export default function MyProvider({ children }: MyProviderPropsShape) {
   const [shouldRequestPasswords, setShouldRequestPasswords] = useState(false);
-  const [files, setFiles] = useState({});
   const [passwords, setPasswords] = useState([]);
 
   const data = {
     shouldRequestPasswords,
     setShouldRequestPasswords,
-    files,
-    setFiles,
     passwords,
     setPasswords,
   };

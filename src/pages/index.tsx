@@ -9,6 +9,7 @@ import { IoMdAdd } from "react-icons/io";
 import FileSystem from "../components/FileSystem/FileSystem";
 import { DataShape } from "../interfaces/interfaces";
 import { validateForm } from "../yupFormValidation/yupValidation";
+import { createPassword, getAllPasswords } from "../services/api/passwordsApi";
 import { addPasswordToFile } from "../utils/fileSystemFunctions";
 import { getFiles } from "../services/api/filesApi";
 
@@ -25,7 +26,9 @@ export default function Home() {
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
-      await addPasswordToFile(data.file, data);
+      const result = await createPassword(data);
+
+      await addPasswordToFile(result.file, result);
       setIsModalOpen(false);
       return setShouldRequestPasswords(!shouldRequestPasswords);
     }

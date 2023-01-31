@@ -1,21 +1,25 @@
 {
+  "userPasswords": [
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas M ",
+      "file": "GOOGLE",
+      "email": "lucmaieski@gmail.com",
+      "password": "asdfadfafa",
+      "id": 2
+    }
+  ],
   "files": [
     {
       "fileName": "GOOGLE",
       "passwords": [
         {
           "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-          "name": "Lucas M Marques",
+          "name": "Lucas M ",
           "file": "GOOGLE",
           "email": "lucmaieski@gmail.com",
-          "password": "sadfafadsf"
-        },
-        {
-          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-          "name": "Lucas Maieski Marques",
-          "file": "GOOGLE",
-          "email": "lucmaieski@gmail.com",
-          "password": "asdfdafadfa"
+          "password": "asdfadfafa",
+          "id": 2
         }
       ],
       "id": 1

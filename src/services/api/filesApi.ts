@@ -51,18 +51,22 @@ export const getFiles = async () => {
     }
 };
 
-export const deletePassword = async (fileName: string, passwordId: number) => {
+export const deletePassword = async (fileName: string, fileId: number, passwordId: number) => {
+    const files = await AXIOS_API.get('/files');
+    const file = files.data.find((file: any) => file.fileName === fileName);
+
+    const updatedPasswords = file.passwords.filter((password: any) => password.id !== passwordId);
+    
     try {
-      const response = await AXIOS_API.delete(`/files/${fileName}/passwords/${passwordId}`);
+        const response = await AXIOS_API.patch(`/files/${fileId}`, { ...file, passwords: updatedPasswords }, {
+          headers: {'Content-Type': 'application/json'}
+        });
+        
       return response.data;
     } catch (error) {
-      if (error.response && error.response.status === 404) {
-        throw new Error("Arquivo ou senha não encontrado.");
-      } else {
-        throw error;
-      }
+      return error.message;
     }
-  }
+}
 
 
 export const checkIfPasswordIsUnique = async (fileName: string) => {
@@ -73,9 +77,9 @@ export const checkIfPasswordIsUnique = async (fileName: string) => {
       const passwordExists = data[0].passwords.length === 1;
       
       if (passwordExists) {
-        return data[0].id;
+        return { data: data[0].id, status: true};
       }
-      return false;
+      return { data: data[0].id, status: false};
     } catch (error) {
       throw error;
     }
