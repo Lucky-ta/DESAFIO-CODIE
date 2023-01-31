@@ -9,6 +9,8 @@ export default function HeaderComponent() {
   const filterFiles = ({ value }) => {
     console.log(value);
     console.log(files);
+
+    const filteredFiles = files;
   };
 
   return (

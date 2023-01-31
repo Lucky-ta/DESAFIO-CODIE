@@ -4,18 +4,12 @@ import { TiSpanner } from "react-icons/ti";
 import { BiTrash } from "react-icons/bi";
 import { DataShape } from "../../interfaces/interfaces";
 import {
-  deletePassword,
+  deletePasswordFromFile,
   updatePassword,
 } from "../../utils/fileSystemFunctions";
 import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
 import ModalComponent from "../Modal/Modal";
-import {
-  deletePasswordById,
-  updatePasswordById,
-} from "../../services/api/passwordsApi";
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
-import styled from "styled-components";
 import { validateForm } from "../../yupFormValidation/yupValidation";
 
 interface PasswordCardPropsShape {
@@ -27,7 +21,8 @@ export default function PasswordCard({
   cardData,
   index,
 }: PasswordCardPropsShape) {
-  const { files, setFiles } = useContext(MyContext);
+  const { files, setFiles, setShouldRequestPasswords, shouldRequestPasswords } =
+    useContext(MyContext);
 
   const [formError, setFormError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,8 +41,9 @@ export default function PasswordCard({
   };
 
   const handleDeleteCard = async () => {
-    deletePassword(files, cardData.file, index, setFiles);
-    await deletePasswordById(cardData.id);
+    const result = await deletePasswordFromFile(cardData.file, cardData.id);
+    console.log(result);
+    setShouldRequestPasswords(!shouldRequestPasswords);
   };
 
   const handleEditPassword = async (formData: DataShape) => {
@@ -56,7 +52,6 @@ export default function PasswordCard({
       return setFormError(validationResult.message);
     } else {
       updatePassword(files, cardData.file, index, formData, setFiles);
-      await updatePasswordById(cardData.id, formData);
       setIsModalOpen(false);
     }
   };

@@ -1,9 +1,8 @@
-import { useContext, useRef, useState } from "react";
+import { useState } from "react";
 import * as StyledForm from "../Form/index";
 import Modal from "react-modal";
 import * as StyledModal from "../Modal/index";
 import * as StyledButtons from "../Buttons/index";
-import MyContext from "../../context/MyContext";
 import { DataShape } from "../../interfaces/interfaces";
 import { Form } from "unform";
 import Input from "../Inputs/Input";
