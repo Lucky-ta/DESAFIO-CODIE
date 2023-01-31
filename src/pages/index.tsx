@@ -1,21 +1,22 @@
+import { createPassword, getAllPasswords } from "../services/api/passwordsApi";
 import HeaderComponent from "../components/Header/HeaderComponent";
+import { validateForm } from "../yupFormValidation/yupValidation";
+import { addPasswordToFile } from "../utils/fileSystemFunctions";
 import LeftOptions from "../components/LeftOptions/LeftOptions";
+import FileSystem from "../components/FileSystem/FileSystem";
 import * as StyledButton from "../components/Buttons/index";
-import ModalComponent from "../components/Modal/Modal";
-import * as GlobalContainer from "../styles/global";
 import { useContext, useState, useEffect } from "react";
+import ModalComponent from "../components/Modal/Modal";
+import { DataShape } from "../interfaces/interfaces";
+import * as GlobalContainer from "../styles/global";
+import { getFiles } from "../services/api/filesApi";
 import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
-import FileSystem from "../components/FileSystem/FileSystem";
-import { DataShape } from "../interfaces/interfaces";
-import { validateForm } from "../yupFormValidation/yupValidation";
-import { createPassword, getAllPasswords } from "../services/api/passwordsApi";
-import { addPasswordToFile } from "../utils/fileSystemFunctions";
-import { getFiles } from "../services/api/filesApi";
 
 export default function Home() {
-  const { setShouldRequestPasswords, shouldRequestPasswords, searchedFile } =
+  const { setReloadPageTrigger, reloadPageTrigger, filteredFiles } =
     useContext(MyContext);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formError, setFormError] = useState("");
   const [data, setData] = useState([]);
@@ -30,7 +31,7 @@ export default function Home() {
 
       await addPasswordToFile(result.file, result);
       setIsModalOpen(false);
-      return setShouldRequestPasswords(!shouldRequestPasswords);
+      return setReloadPageTrigger(!reloadPageTrigger);
     }
   };
 
@@ -48,7 +49,7 @@ export default function Home() {
       setData(response);
     };
     fetchData();
-  }, [shouldRequestPasswords]);
+  }, [reloadPageTrigger]);
 
   return (
     <GlobalContainer.GlobalContainer>
@@ -57,7 +58,7 @@ export default function Home() {
         <HeaderComponent data={data} />
         <GlobalContainer.GlobalContainer className="third">
           <h2>Todos os itens</h2>
-          <FileSystem data={searchedFile ? searchedFile : data} />
+          <FileSystem data={filteredFiles ? filteredFiles : data} />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
       <ModalComponent

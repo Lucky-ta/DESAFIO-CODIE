@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { DataShape, FileShape } from "../../interfaces/interfaces";
 
 export default function HeaderComponent({ data }) {
-  const { setSearchedFile } = useContext(MyContext);
+  const { setFilteredFiles } = useContext(MyContext);
 
   const filterFiles = ({ value: word }) => {
     const wordToLowerCase = word.toString().toLowerCase();
@@ -18,7 +18,7 @@ export default function HeaderComponent({ data }) {
       });
     });
 
-    return setSearchedFile(dataFilter);
+    return setFilteredFiles(dataFilter);
   };
 
   return (

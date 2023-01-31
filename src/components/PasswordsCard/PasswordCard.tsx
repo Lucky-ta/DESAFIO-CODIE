@@ -18,12 +18,8 @@ interface PasswordCardPropsShape {
   index: number;
 }
 
-export default function PasswordCard({
-  cardData,
-  index,
-}: PasswordCardPropsShape) {
-  const { setShouldRequestPasswords, shouldRequestPasswords } =
-    useContext(MyContext);
+export default function PasswordCard({ cardData }: PasswordCardPropsShape) {
+  const { setReloadPageTrigger, reloadPageTrigger } = useContext(MyContext);
 
   const [formError, setFormError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +40,7 @@ export default function PasswordCard({
   const handleDeleteCard = async () => {
     const result = await deletePasswordFromFile(cardData.file, cardData.id);
     console.log(result);
-    setShouldRequestPasswords(!shouldRequestPasswords);
+    setReloadPageTrigger(!reloadPageTrigger);
   };
 
   const handleEditPassword = async (formData: DataShape) => {
@@ -55,7 +51,7 @@ export default function PasswordCard({
       const updatedUser = await updatePasswordById(cardData.id, formData);
       await updatePasswordService(cardData.file, updatedUser);
       setIsModalOpen(false);
-      return setShouldRequestPasswords(!shouldRequestPasswords);
+      return setReloadPageTrigger(!reloadPageTrigger);
     }
   };
 

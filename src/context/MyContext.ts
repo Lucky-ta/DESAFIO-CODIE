@@ -1,13 +1,11 @@
 import { createContext } from "react";
-import { DataShape, FileShape } from "../interfaces/interfaces";
+import { FileShape } from "../interfaces/interfaces";
 
 export type ContextDataShape = {
-    shouldRequestPasswords: boolean;
-    setShouldRequestPasswords: (value: boolean) => void;
-    passwords: DataShape[];
-    setPasswords: (data: DataShape[]) => void;
-    searchedFile: FileShape;
-    setSearchedFile: (value: FileShape) => void;
+    reloadPageTrigger: boolean;
+    setReloadPageTrigger: (value: boolean) => void;
+    filteredFiles: FileShape;
+    setFilteredFiles: (value: FileShape) => void;
 }
 
 const MyContext = createContext<ContextDataShape>(null);
