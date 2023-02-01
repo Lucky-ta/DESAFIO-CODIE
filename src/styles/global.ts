@@ -13,9 +13,13 @@ export const GlobalContainer = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    overflow: auto;
+
 
     &.secondary {
-      flex-direction: column;
+      display: flex;
+      flex-direction: row;
     }
 
     &.third {
@@ -26,9 +30,10 @@ export const GlobalContainer = styled.div`
       color: #2f2f31;
       font-weight: bold;
       font-size: 1.1rem;
-      padding-left: 1rem;
+      padding-left: 3rem;
+      padding-right: 3rem;
       padding-top: 1rem;
-
+      padding-bottom: 1rem;
       span {
         color: #707070;
       }

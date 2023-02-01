@@ -2,10 +2,12 @@ import * as StyledHeader from "./index";
 import { BiSearchAlt2 } from "react-icons/bi";
 import MyContext from "../../context/MyContext";
 import { useContext } from "react";
+import { MdOutlineSort } from "react-icons/md";
 import { DataShape, FileShape } from "../../interfaces/interfaces";
 
 export default function HeaderComponent({ data }) {
-  const { setFilteredFiles } = useContext(MyContext);
+  const { setFilteredFiles, setSimpleModalStatus, simpleModalStatus } =
+    useContext(MyContext);
 
   const filterFiles = ({ value: word }) => {
     const wordToLowerCase = word.toString().toLowerCase();
@@ -20,8 +22,15 @@ export default function HeaderComponent({ data }) {
     return setFilteredFiles(dataFilter);
   };
 
+  const handleModalStatus = () => {
+    setSimpleModalStatus(!simpleModalStatus);
+  };
+
   return (
     <StyledHeader.HeaderContainer>
+      <StyledHeader.HeaderOptionsModalButton onClick={handleModalStatus}>
+        {<MdOutlineSort />}
+      </StyledHeader.HeaderOptionsModalButton>
       <StyledHeader.HeaderTitle>Almaden...</StyledHeader.HeaderTitle>
       <StyledHeader.HeaderButton type="button">
         {<BiSearchAlt2 />}

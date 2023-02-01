@@ -14,8 +14,12 @@ import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
 
 export default function Home() {
-  const { setReloadPageTrigger, reloadPageTrigger, filteredFiles } =
-    useContext(MyContext);
+  const {
+    setReloadPageTrigger,
+    reloadPageTrigger,
+    filteredFiles,
+    simpleModalStatus,
+  } = useContext(MyContext);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formError, setFormError] = useState("");
@@ -51,14 +55,15 @@ export default function Home() {
 
   return (
     <GlobalContainer.GlobalContainer>
-      <LeftOptions />
+      <HeaderComponent data={data} />
       <GlobalContainer.GlobalContainer className="secondary">
-        <HeaderComponent data={data} />
+        {simpleModalStatus && <LeftOptions />}
         <GlobalContainer.GlobalContainer className="third">
           <h2>Todos os itens</h2>
           <FileSystem data={filteredFiles ? filteredFiles : data} />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
+
       <ModalComponent
         errorMessage={formError}
         onClose={closeModal}

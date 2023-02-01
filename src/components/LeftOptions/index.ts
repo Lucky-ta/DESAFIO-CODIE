@@ -1,20 +1,32 @@
 import styled from "styled-components";
 
 export const LeftOptionContainer = styled.div`
+    position: relative;
     background-color: #3d4a56;
     width: 100%;
     height: 100%;
     max-width: 20rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-bottom-right-radius: 6px;
 
     @media (max-width: 1000px) {
-        position: fixed;
-        bottom: 0;
-        max-width: initial;
-        max-height: 6rem;
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem;
+        position: absolute;
+        max-width: none;
+        padding-top: 1rem;
+  }
+
+  @media only screen and (min-width: 700px) {
+    animation-name: slidein;
+    animation-duration: 0.8s;
+    @keyframes slidein {
+      from {
+        margin-left: -40%;
+      }
+      to {
+        margin-left: 0%;
+        width: 100%;
+      }
+    }
   }
 `;
 

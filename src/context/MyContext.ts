@@ -6,6 +6,8 @@ export type ContextDataShape = {
     setReloadPageTrigger: (value: boolean) => void;
     filteredFiles: FileShape;
     setFilteredFiles: (value: FileShape) => void;
+    simpleModalStatus: boolean;
+    setSimpleModalStatus: (value: boolean) => void;
 };
 
 const MyContext = createContext<ContextDataShape>(null);

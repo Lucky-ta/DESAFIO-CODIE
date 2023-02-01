@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AddPasswordButton = styled.button`
-    position: absolute;
+    position: fixed;
     bottom: 2rem;
     right: 2rem;
 
@@ -15,9 +15,7 @@ export const AddPasswordButton = styled.button`
     color: white;
     border: 3px solid black;
 
-    @media (max-width: 960px) {
-        bottom: 3em;
-  }
+
 `;
 
 export const CloseModalButton = styled.button`

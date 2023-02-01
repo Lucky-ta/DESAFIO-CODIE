@@ -5,7 +5,7 @@ export default function LeftOptions() {
   return (
     <StyledLeftOptions.LeftOptionContainer>
       <StyledLeftOptions.LeftOptionButton type="button">
-        {<FaHome fontSize={30}/>}
+        {<FaHome fontSize={30} />}
         Todos os itens
       </StyledLeftOptions.LeftOptionButton>
     </StyledLeftOptions.LeftOptionContainer>
