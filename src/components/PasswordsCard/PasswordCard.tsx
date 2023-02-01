@@ -9,6 +9,7 @@ import { TiSpanner } from "react-icons/ti";
 import * as StyledPassCard from "./index";
 import { BiTrash } from "react-icons/bi";
 import useFetch from "../../hooks/swrHook";
+import { deleteMutate, updateMutate } from "../../utils/mutateFunctions/mutate";
 
 interface PasswordCardPropsShape {
   password: DataShape;
@@ -35,36 +36,22 @@ export default function PasswordCard({ password }: PasswordCardPropsShape) {
   };
 
   const handleDeleteCard = async () => {
-    const file = data.find((file: any) => file.fileName === password.file);
-    const updatedPasswords = file.passwords.filter(
-      (filterPass: any) => filterPass.id !== password.id
-    );
-
-    const fileIndex = data.findIndex(
-      ({ fileName }) => fileName === password.file
-    );
-
-    if (data[fileIndex].passwords.length !== 1) {
-      data[fileIndex].passwords = updatedPasswords;
-    } else {
-      data.splice(fileIndex, 1);
-    }
-
-    mutate(data, false);
-
-    // await PasswordManager.deleteUserPassword(password);
+    deleteMutate(data, password, mutate);
+    await PasswordManager.deleteUserPassword(password);
     return setReloadPageTrigger(!reloadPageTrigger);
   };
 
   const handleEditPassword = async (formData: DataShape) => {
     const validationResult = await validateForm(formData);
-    if (validationResult.message) {
-      return setFormError(validationResult.message);
-    } else {
-      await PasswordManager.updateUserPassword(password, formData);
-      setIsModalOpen(false);
-      return setReloadPageTrigger(!reloadPageTrigger);
+    if (!validationResult) {
+      setFormError("Validation failed. Please check the form data.");
+      return;
     }
+
+    updateMutate(data, formData, mutate);
+    await PasswordManager.updateUserPassword(password, formData);
+    setIsModalOpen(false);
+    setReloadPageTrigger(!reloadPageTrigger);
   };
 
   return (

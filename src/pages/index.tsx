@@ -13,13 +13,14 @@ import { getFiles } from "../services/api/filesApi";
 import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
 import useFetch from "../hooks/swrHook";
+import { createMutate } from "../utils/mutateFunctions/mutate";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formError, setFormError] = useState("");
 
-  const { data: fetchData } = useFetch();
-  if (!fetchData) return <span>Carregando...</span>;
+  const { data, mutate } = useFetch();
+  if (!data) return <span>Carregando...</span>;
 
   const {
     setReloadPageTrigger,
@@ -28,13 +29,14 @@ export default function Home() {
     simpleModalStatus,
   } = useContext(MyContext);
 
-  const handleSubmit = async (data: DataShape) => {
-    const validationResult = await validateForm(data);
+  const handleSubmit = async (formData: DataShape) => {
+    const validationResult = await validateForm(formData);
 
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
-      await PasswordManager.createUserPassword(data);
+      createMutate(data, formData, mutate);
+      await PasswordManager.createUserPassword(formData);
       setIsModalOpen(false);
       return setReloadPageTrigger(!reloadPageTrigger);
     }
@@ -48,22 +50,14 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await getFiles();
-  //     setData(response);
-  //   };
-  //   fetchData();
-  // }, [reloadPageTrigger]);
-
   return (
     <GlobalContainer.GlobalContainer>
-      <HeaderComponent data={fetchData} />
+      <HeaderComponent data={data} />
       <GlobalContainer.GlobalContainer className="secondary">
         {simpleModalStatus && <LeftOptions />}
         <GlobalContainer.GlobalContainer className="third">
           <h2>Todos os itens</h2>
-          <FileSystem data={fetchData} />
+          <FileSystem data={filteredFiles ? filteredFiles : data} />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
 

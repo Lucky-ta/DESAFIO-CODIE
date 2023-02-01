@@ -1,25 +1,37 @@
 import * as StyledHeader from "./index";
 import { BiSearchAlt2 } from "react-icons/bi";
 import MyContext from "../../context/MyContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MdOutlineSort } from "react-icons/md";
 import { DataShape, FileShape } from "../../interfaces/interfaces";
+import useFetch from "../../hooks/swrHook";
 
 export default function HeaderComponent({ data }) {
   const { setFilteredFiles, setSimpleModalStatus, simpleModalStatus } =
     useContext(MyContext);
+  const [pageReload, setPageReload] = useState(false);
 
   const filterFiles = ({ value: word }) => {
     const wordToLowerCase = word.toString().toLowerCase();
 
-    const dataFilter = data.filter((object: FileShape) => {
+    const dataCopy = [...data];
+    const dataFilter = dataCopy.filter((object: FileShape) => {
       return object.passwords.some((pass: DataShape) => {
         return Object.values(pass).some((val) =>
           val.toString().toLowerCase().includes(wordToLowerCase)
         );
       });
     });
-    return setFilteredFiles(dataFilter);
+
+    if (word.length !== 0) {
+      setFilteredFiles(dataFilter);
+      setPageReload(!pageReload);
+      return;
+    } else {
+      setFilteredFiles(data);
+      setPageReload(!pageReload);
+      return;
+    }
   };
 
   const handleModalStatus = () => {

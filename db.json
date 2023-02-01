@@ -2,43 +2,35 @@
   "userPasswords": [
     {
       "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-      "name": "Lucas M Marques",
-      "file": "AAAAAAAA",
-      "email": "lucmaieski@gmail.comf",
-      "password": "asfasfasdfaf",
-      "id": 6
+      "name": "Lucas Maieski ",
+      "file": "SNOW",
+      "email": "lucasmaieski@gmail.com",
+      "password": "asdfafaf",
+      "id": 2
     },
     {
       "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
       "name": "Lucas M",
       "file": "GOOGLE",
-      "email": "lucasmaieski@gmail.com",
-      "password": "sdfafadsf",
-      "id": 7
-    },
-    {
-      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-      "name": "Lucas Maieski Marques",
-      "file": "GOOGLE",
-      "email": "lucmaieski@gmail.com",
-      "password": "asdfadfaf",
-      "id": 8
+      "email": "lucmaieski@hotmail.com",
+      "password": "fasdfasfdasf",
+      "id": 4
     }
   ],
   "files": [
     {
-      "fileName": "AAAAAAAA",
+      "fileName": "SNOW",
       "passwords": [
         {
           "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-          "name": "Lucas M Marques",
-          "file": "AAAAAAAA",
-          "email": "lucmaieski@gmail.comf",
-          "password": "asfasfasdfaf",
-          "id": 6
+          "name": "Lucas Maieski ",
+          "file": "SNOW",
+          "email": "lucasmaieski@gmail.com",
+          "password": "asdfafaf",
+          "id": 2
         }
       ],
-      "id": 4
+      "id": 2
     },
     {
       "fileName": "GOOGLE",
@@ -47,20 +39,12 @@
           "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
           "name": "Lucas M",
           "file": "GOOGLE",
-          "email": "lucasmaieski@gmail.com",
-          "password": "sdfafadsf",
-          "id": 7
-        },
-        {
-          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-          "name": "Lucas Maieski Marques",
-          "file": "GOOGLE",
-          "email": "lucmaieski@gmail.com",
-          "password": "asdfadfaf",
-          "id": 8
+          "email": "lucmaieski@hotmail.com",
+          "password": "fasdfasfdasf",
+          "id": 4
         }
       ],
-      "id": 5
+      "id": 3
     }
   ]
 }
