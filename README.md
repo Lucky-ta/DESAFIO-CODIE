@@ -70,11 +70,11 @@ npm install
 
 Para iniciar o projeto rode o seguinte comando no seu terminal:
 `npm run dev` ou `yarn run dev`
+Após rodar o comando, o projeto vai estar rodando localmente na sua máquina na porta padrão (localhost:3000).
 
 Para iniciar o servidor json rode o seguinte comando no seu terminal:
 `npm run jsonserver` ou `yarn run jsonserver`
 
-Após rodar o comando, o projeto vai estar rodando localmente na sua máquina na porta padrão (localhost:3000).
 Após rodar o comando, o servidor json vai estar rodando localmente na sua máquina na porta configurada (localhost:3001).
 
 # ⚙️ Estrutura do projeto:
