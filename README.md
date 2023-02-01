@@ -82,7 +82,6 @@ Após rodar o comando, o servidor json vai estar rodando localmente na sua máqu
     O projeto possui a seguinte estrutura:
 
 ```
-
 ├───src
 │   ├───components
 │   │   ├───Buttons
@@ -101,10 +100,10 @@ Após rodar o comando, o servidor json vai estar rodando localmente na sua máqu
 │   │   └───api
 │   │       └───apiUrls
 │   ├───styles
-│   ├───utils
-│   │   ├───formatData
-│   │   └───mutateFunctions
-│   └───yupFormValidation
+│   └───utils
+│       ├───formatData
+│       ├───mutateFunctions
+│       └───yupFormValidation
 ├───__mocks__
 │   └───dataMock
 └───__tests__

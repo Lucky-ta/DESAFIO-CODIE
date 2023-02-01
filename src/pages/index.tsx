@@ -1,5 +1,5 @@
 import HeaderComponent from "../components/Header/HeaderComponent";
-import { validateForm } from "../yupFormValidation/yupValidation";
+import { validateForm } from "../utils/yupFormValidation/yupValidation";
 import LeftOptions from "../components/LeftOptions/LeftOptions";
 import { createMutate } from "../utils/mutateFunctions/mutate";
 import FileSystem from "../components/FileSystem/FileSystem";

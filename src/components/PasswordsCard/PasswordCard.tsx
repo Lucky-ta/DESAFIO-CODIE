@@ -1,5 +1,5 @@
 import { deleteMutate, updateMutate } from "../../utils/mutateFunctions/mutate";
-import { validateForm } from "../../yupFormValidation/yupValidation";
+import { validateForm } from "../../utils/yupFormValidation/yupValidation";
 import PasswordManager from "../../utils/fileSystemFunctions";
 import { DataShape } from "../../interfaces/interfaces";
 import * as StyledButtons from "../Buttons/index";

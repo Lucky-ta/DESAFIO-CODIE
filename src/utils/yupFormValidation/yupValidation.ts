@@ -1,5 +1,5 @@
-import { formatData } from "../utils/formatData/formatUserData";
-import { DataShape } from "../interfaces/interfaces"
+import { formatData } from "../formatData/formatUserData";
+import { DataShape } from "../../interfaces/interfaces"
 import { schema } from "./yupSchemas"
 
 export const validateForm = async (formData: DataShape) => {
