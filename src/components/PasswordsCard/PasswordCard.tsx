@@ -8,6 +8,7 @@ import ModalComponent from "../Modal/Modal";
 import { TiSpanner } from "react-icons/ti";
 import * as StyledPassCard from "./index";
 import { BiTrash } from "react-icons/bi";
+import useFetch from "../../hooks/swrHook";
 
 interface PasswordCardPropsShape {
   password: DataShape;
@@ -15,8 +16,8 @@ interface PasswordCardPropsShape {
 }
 
 export default function PasswordCard({ password }: PasswordCardPropsShape) {
-  const { setReloadPageTrigger, reloadPageTrigger, setFilteredFiles } =
-    useContext(MyContext);
+  const { data, mutate } = useFetch();
+  const { setReloadPageTrigger, reloadPageTrigger } = useContext(MyContext);
 
   const [formError, setFormError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,8 +35,24 @@ export default function PasswordCard({ password }: PasswordCardPropsShape) {
   };
 
   const handleDeleteCard = async () => {
-    await PasswordManager.deleteUserPassword(password);
+    const file = data.find((file: any) => file.fileName === password.file);
+    const updatedPasswords = file.passwords.filter(
+      (filterPass: any) => filterPass.id !== password.id
+    );
 
+    const fileIndex = data.findIndex(
+      ({ fileName }) => fileName === password.file
+    );
+
+    if (data[fileIndex].passwords.length !== 1) {
+      data[fileIndex].passwords = updatedPasswords;
+    } else {
+      data.splice(fileIndex, 1);
+    }
+
+    mutate(data, false);
+
+    // await PasswordManager.deleteUserPassword(password);
     return setReloadPageTrigger(!reloadPageTrigger);
   };
 

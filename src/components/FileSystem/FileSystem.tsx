@@ -2,6 +2,8 @@ import PasswordCard from "../PasswordsCard/PasswordCard";
 import * as StyledFileSysyem from "./index";
 
 export default function FileSystem({ data }) {
+  console.log(data);
+
   return (
     <StyledFileSysyem.FileSystemContainer>
       {data.map(({ fileName, passwords }) => {

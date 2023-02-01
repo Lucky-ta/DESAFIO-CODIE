@@ -12,18 +12,21 @@ import * as GlobalContainer from "../styles/global";
 import { getFiles } from "../services/api/filesApi";
 import MyContext from "../context/MyContext";
 import { IoMdAdd } from "react-icons/io";
+import useFetch from "../hooks/swrHook";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  const { data: fetchData } = useFetch();
+  if (!fetchData) return <span>Carregando...</span>;
+
   const {
     setReloadPageTrigger,
     reloadPageTrigger,
     filteredFiles,
     simpleModalStatus,
   } = useContext(MyContext);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formError, setFormError] = useState("");
-  const [data, setData] = useState([]);
 
   const handleSubmit = async (data: DataShape) => {
     const validationResult = await validateForm(data);
@@ -45,22 +48,22 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getFiles();
-      setData(response);
-    };
-    fetchData();
-  }, [reloadPageTrigger]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await getFiles();
+  //     setData(response);
+  //   };
+  //   fetchData();
+  // }, [reloadPageTrigger]);
 
   return (
     <GlobalContainer.GlobalContainer>
-      <HeaderComponent data={data} />
+      <HeaderComponent data={fetchData} />
       <GlobalContainer.GlobalContainer className="secondary">
         {simpleModalStatus && <LeftOptions />}
         <GlobalContainer.GlobalContainer className="third">
           <h2>Todos os itens</h2>
-          <FileSystem data={filteredFiles ? filteredFiles : data} />
+          <FileSystem data={fetchData} />
         </GlobalContainer.GlobalContainer>
       </GlobalContainer.GlobalContainer>
 
