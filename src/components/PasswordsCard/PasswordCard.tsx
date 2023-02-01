@@ -1,35 +1,31 @@
-import * as StyledPassCard from "./index";
-import * as StyledButtons from "../Buttons/index";
-import { TiSpanner } from "react-icons/ti";
-import { BiTrash } from "react-icons/bi";
+import { validateForm } from "../../yupFormValidation/yupValidation";
+import PasswordManager from "../../utils/fileSystemFunctions";
 import { DataShape } from "../../interfaces/interfaces";
-import {
-  deletePasswordFromFile,
-  updatePasswordService,
-} from "../../utils/fileSystemFunctions";
+import * as StyledButtons from "../Buttons/index";
 import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
 import ModalComponent from "../Modal/Modal";
-import { validateForm } from "../../yupFormValidation/yupValidation";
-import { updatePasswordById } from "../../services/api/passwordsApi";
+import { TiSpanner } from "react-icons/ti";
+import * as StyledPassCard from "./index";
+import { BiTrash } from "react-icons/bi";
 
 interface PasswordCardPropsShape {
-  cardData: DataShape;
+  password: DataShape;
   index: number;
 }
 
-export default function PasswordCard({ cardData }: PasswordCardPropsShape) {
-  const { setReloadPageTrigger, reloadPageTrigger } = useContext(MyContext);
+export default function PasswordCard({ password }: PasswordCardPropsShape) {
+  const { setReloadPageTrigger, reloadPageTrigger, setFilteredFiles } =
+    useContext(MyContext);
 
   const [formError, setFormError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const redirectToUrl = () => {
-    window.open(cardData.url, "_blank");
+    window.open(password.url, "_blank");
   };
 
   const openModal = () => {
-    console.log("vamos editar o card");
     setIsModalOpen(true);
   };
 
@@ -38,9 +34,9 @@ export default function PasswordCard({ cardData }: PasswordCardPropsShape) {
   };
 
   const handleDeleteCard = async () => {
-    const result = await deletePasswordFromFile(cardData.file, cardData.id);
-    console.log(result);
-    setReloadPageTrigger(!reloadPageTrigger);
+    await PasswordManager.deleteUserPassword(password);
+
+    return setReloadPageTrigger(!reloadPageTrigger);
   };
 
   const handleEditPassword = async (formData: DataShape) => {
@@ -48,8 +44,7 @@ export default function PasswordCard({ cardData }: PasswordCardPropsShape) {
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
-      const updatedUser = await updatePasswordById(cardData.id, formData);
-      await updatePasswordService(cardData.file, updatedUser);
+      await PasswordManager.updateUserPassword(password, formData);
       setIsModalOpen(false);
       return setReloadPageTrigger(!reloadPageTrigger);
     }
@@ -66,10 +61,10 @@ export default function PasswordCard({ cardData }: PasswordCardPropsShape) {
       <StyledPassCard.PassCardContentContainer className="content">
         <StyledPassCard.PassCardContentContainer className="infoContainer">
           <StyledPassCard.PassCardContent className="name">
-            {cardData.name}
+            {password.name}
           </StyledPassCard.PassCardContent>
           <StyledPassCard.PassCardContent className="email">
-            {cardData.email}
+            {password.email}
           </StyledPassCard.PassCardContent>
         </StyledPassCard.PassCardContentContainer>
 
@@ -90,7 +85,7 @@ export default function PasswordCard({ cardData }: PasswordCardPropsShape) {
       </StyledPassCard.PassCardContentContainer>
       <ModalComponent
         errorMessage={formError}
-        initialValue={cardData}
+        initialValue={password}
         onClose={closeModal}
         isOpen={isModalOpen}
         onSubmit={handleEditPassword}

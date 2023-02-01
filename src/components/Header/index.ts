@@ -6,11 +6,13 @@ export const HeaderContainer = styled.div`
     width: 100%;
     max-height: 5rem;
     display: flex;
-    gap: 1.2rem;
     padding: 1rem;
-    align-items: center;
-    font-size: 1.4rem;
     padding-left: 2rem;
+    font-size: 1.4rem;
+    gap: 1.2rem;
+
+    max-height: 5rem;
+    align-items: center;
     padding-right: 2rem;
 
 `;
@@ -44,7 +46,7 @@ export const HeaderButton = styled.button`
         margin: auto;
         margin-left: 0.2rem;
   }
-`;  
+`;
 
 export const HeaderInput = styled.input`
     font-size: 1.4rem;

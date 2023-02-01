@@ -1,5 +1,5 @@
+import { formatData } from "../utils/formatData/formatUserData";
 import { DataShape } from "../interfaces/interfaces"
-import { formatData } from "../services/formatData/formatUserData";
 import { schema } from "./yupSchemas"
 
 export const validateForm = async (formData: DataShape) => {
@@ -11,4 +11,4 @@ export const validateForm = async (formData: DataShape) => {
     } catch (e: any) {
         return { message: e.message }
     }
-}
+};

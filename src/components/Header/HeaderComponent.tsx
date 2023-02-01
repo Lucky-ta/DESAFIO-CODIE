@@ -17,7 +17,6 @@ export default function HeaderComponent({ data }) {
         );
       });
     });
-
     return setFilteredFiles(dataFilter);
   };
 

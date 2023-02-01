@@ -1,7 +1,7 @@
-import { createPassword, getAllPasswords } from "../services/api/passwordsApi";
+import { createPassword } from "../services/api/passwordsApi";
 import HeaderComponent from "../components/Header/HeaderComponent";
 import { validateForm } from "../yupFormValidation/yupValidation";
-import { addPasswordToFile } from "../utils/fileSystemFunctions";
+import PasswordManager from "../utils/fileSystemFunctions";
 import LeftOptions from "../components/LeftOptions/LeftOptions";
 import FileSystem from "../components/FileSystem/FileSystem";
 import * as StyledButton from "../components/Buttons/index";
@@ -27,9 +27,7 @@ export default function Home() {
     if (validationResult.message) {
       return setFormError(validationResult.message);
     } else {
-      const result = await createPassword(data);
-
-      await addPasswordToFile(result.file, result);
+      await PasswordManager.createUserPassword(data);
       setIsModalOpen(false);
       return setReloadPageTrigger(!reloadPageTrigger);
     }

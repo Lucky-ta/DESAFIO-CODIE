@@ -9,7 +9,6 @@ export const FileSystemContainer = styled.div`
         padding: 0.6rem;
         padding-top: 1rem;
         border-top: 1px solid grey;
-
     }
 `
 

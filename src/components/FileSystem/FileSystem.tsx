@@ -1,5 +1,5 @@
-import * as StyledFileSysyem from "./index";
 import PasswordCard from "../PasswordsCard/PasswordCard";
+import * as StyledFileSysyem from "./index";
 
 export default function FileSystem({ data }) {
   return (
@@ -13,7 +13,7 @@ export default function FileSystem({ data }) {
             <StyledFileSysyem.FileSystemContainer className="passwordsContainer">
               {passwords.map((password, index) => {
                 return (
-                  <PasswordCard key={index} index={index} cardData={password} />
+                  <PasswordCard key={index} index={index} password={password} />
                 );
               })}
             </StyledFileSysyem.FileSystemContainer>

@@ -2,22 +2,52 @@
   "userPasswords": [
     {
       "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-      "name": "Lucas M Marques",
-      "file": "GOOGLE",
+      "name": "Lucas Maieski",
+      "file": "SNOW",
       "email": "lucmaieski@gmail.com",
-      "password": "fasdfasf",
-      "id": 1
+      "password": "asfdafafd",
+      "id": 3
     },
     {
       "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-      "name": "Mana",
+      "name": "Lucas",
       "file": "SNOW",
-      "email": "lucmaieski@gmail.com",
-      "password": "fdfadfafd",
-      "id": 2
+      "email": "lucmaieski@gmail.comf",
+      "password": "fasdfadsfa",
+      "id": 4
+    },
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas M Marques",
+      "file": "GOOGLE",
+      "email": "lucasmaieski@gmail.com",
+      "password": "fsdafafdaf",
+      "id": 5
     }
   ],
   "files": [
+    {
+      "fileName": "SNOW",
+      "passwords": [
+        {
+          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+          "name": "Lucas Maieski",
+          "file": "SNOW",
+          "email": "lucmaieski@gmail.com",
+          "password": "asfdafafd",
+          "id": 3
+        },
+        {
+          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+          "name": "Lucas",
+          "file": "SNOW",
+          "email": "lucmaieski@gmail.comf",
+          "password": "fasdfadsfa",
+          "id": 4
+        }
+      ],
+      "id": 2
+    },
     {
       "fileName": "GOOGLE",
       "passwords": [
@@ -25,26 +55,12 @@
           "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
           "name": "Lucas M Marques",
           "file": "GOOGLE",
-          "email": "lucmaieski@gmail.com",
-          "password": "fasdfasf",
-          "id": 1
+          "email": "lucasmaieski@gmail.com",
+          "password": "fsdafafdaf",
+          "id": 5
         }
       ],
-      "id": 1
-    },
-    {
-      "fileName": "SNOW",
-      "passwords": [
-        {
-          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-          "name": "Mana",
-          "file": "SNOW",
-          "email": "lucmaieski@gmail.com",
-          "password": "fdfadfafd",
-          "id": 2
-        }
-      ],
-      "id": 2
+      "id": 3
     }
   ]
 }
