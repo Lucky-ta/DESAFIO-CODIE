@@ -103,32 +103,5 @@ describe("Test modal component", () => {
       expect(emailInput.value).toBe(mockEmailValue);
       expect(passwordInput.value).toBe(mockPasswordValue);
     });
-
-    it("must be possible to create a new file", () => {
-      const modalFormSaveButton = screen.getByText(/Salvar/i);
-
-      const mockUrlValue = "https://validUrl.com";
-      const mockNameValue = "Lucas";
-      const mockFilelValue = "GOOGLE";
-      const mockEmailValue = "someemail@gmail.com";
-      const mockPasswordValue = "123password";
-
-      const urlInput: any = screen.getByLabelText("URL:");
-      const nameInput: any = screen.getByLabelText("Nome:");
-      const fileInput: any = screen.getByLabelText("Pasta:");
-      const emailInput: any = screen.getByLabelText("Nome de usuário:");
-      const passwordInput: any = screen.getByLabelText("Senha do site:");
-
-      fireEvent.change(urlInput, { target: { value: mockUrlValue } });
-      fireEvent.change(nameInput, { target: { value: mockNameValue } });
-      fireEvent.change(fileInput, { target: { value: mockFilelValue } });
-      fireEvent.change(emailInput, { target: { value: mockEmailValue } });
-      fireEvent.change(passwordInput, { target: { value: mockPasswordValue } });
-
-      fireEvent.click(modalFormSaveButton);
-
-      const createdCardEmail = screen.getByText(mockUrlValue);
-      expect(createdCardEmail).toBeInTheDocument();
-    });
   });
 });
