@@ -1,3 +1,4 @@
+import { deleteMutate, updateMutate } from "../../utils/mutateFunctions/mutate";
 import { validateForm } from "../../yupFormValidation/yupValidation";
 import PasswordManager from "../../utils/fileSystemFunctions";
 import { DataShape } from "../../interfaces/interfaces";
@@ -6,10 +7,9 @@ import MyContext from "../../context/MyContext";
 import { useContext, useState } from "react";
 import ModalComponent from "../Modal/Modal";
 import { TiSpanner } from "react-icons/ti";
+import useFetch from "../../hooks/swrHook";
 import * as StyledPassCard from "./index";
 import { BiTrash } from "react-icons/bi";
-import useFetch from "../../hooks/swrHook";
-import { deleteMutate, updateMutate } from "../../utils/mutateFunctions/mutate";
 
 interface PasswordCardPropsShape {
   password: DataShape;

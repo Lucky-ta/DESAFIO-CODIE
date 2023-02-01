@@ -1,19 +1,17 @@
-import { createPassword } from "../services/api/passwordsApi";
 import HeaderComponent from "../components/Header/HeaderComponent";
 import { validateForm } from "../yupFormValidation/yupValidation";
-import PasswordManager from "../utils/fileSystemFunctions";
 import LeftOptions from "../components/LeftOptions/LeftOptions";
+import { createMutate } from "../utils/mutateFunctions/mutate";
 import FileSystem from "../components/FileSystem/FileSystem";
 import * as StyledButton from "../components/Buttons/index";
-import { useContext, useState, useEffect } from "react";
+import PasswordManager from "../utils/fileSystemFunctions";
 import ModalComponent from "../components/Modal/Modal";
 import { DataShape } from "../interfaces/interfaces";
 import * as GlobalContainer from "../styles/global";
-import { getFiles } from "../services/api/filesApi";
 import MyContext from "../context/MyContext";
+import { useContext, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import useFetch from "../hooks/swrHook";
-import { createMutate } from "../utils/mutateFunctions/mutate";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);

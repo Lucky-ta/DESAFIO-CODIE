@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { getFiles } from "../services/api/filesApi";
+import React, { useState } from "react";
 import MyContext from "./MyContext";
 
 interface MyProviderPropsShape {

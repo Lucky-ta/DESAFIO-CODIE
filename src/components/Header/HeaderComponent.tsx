@@ -1,10 +1,9 @@
-import * as StyledHeader from "./index";
-import { BiSearchAlt2 } from "react-icons/bi";
-import MyContext from "../../context/MyContext";
-import { useContext, useState } from "react";
-import { MdOutlineSort } from "react-icons/md";
 import { DataShape, FileShape } from "../../interfaces/interfaces";
-import useFetch from "../../hooks/swrHook";
+import MyContext from "../../context/MyContext";
+import { MdOutlineSort } from "react-icons/md";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { useContext, useState } from "react";
+import * as StyledHeader from "./index";
 
 export default function HeaderComponent({ data }) {
   const { setFilteredFiles, setSimpleModalStatus, simpleModalStatus } =

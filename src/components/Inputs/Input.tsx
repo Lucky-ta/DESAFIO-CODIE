@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
-import { useField } from "unform";
 import * as StyledInput from "./index";
+import { useField } from "unform";
 
 export default function Input({ name, ...rest }) {
   const inputRef = useRef(null);

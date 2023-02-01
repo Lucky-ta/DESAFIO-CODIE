@@ -1,12 +1,12 @@
-import { useState } from "react";
-import * as StyledForm from "../Form/index";
-import Modal from "react-modal";
-import * as StyledModal from "../Modal/index";
-import * as StyledButtons from "../Buttons/index";
-import { DataShape } from "../../interfaces/interfaces";
-import { Form } from "unform";
-import Input from "../Inputs/Input";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { DataShape } from "../../interfaces/interfaces";
+import * as StyledButtons from "../Buttons/index";
+import * as StyledModal from "../Modal/index";
+import * as StyledForm from "../Form/index";
+import Input from "../Inputs/Input";
+import { useState } from "react";
+import Modal from "react-modal";
+import { Form } from "unform";
 interface MoalPropsShape {
   onSubmit: (data: DataShape) => void;
   isOpen: boolean;
