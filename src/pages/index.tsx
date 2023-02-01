@@ -66,7 +66,7 @@ export default function Home() {
         onSubmit={handleSubmit}
       />
       <StyledButton.AddPasswordButton
-        data-testid="openModal"
+        data-testid="openModalButton"
         onClick={openModal}
         type="button"
       >

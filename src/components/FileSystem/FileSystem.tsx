@@ -6,9 +6,9 @@ export default function FileSystem({ data }) {
 
   return (
     <StyledFileSysyem.FileSystemContainer>
-      {data.map(({ fileName, passwords }) => {
+      {data.map(({ fileName, passwords }, index) => {
         return (
-          <StyledFileSysyem.FileSystemContainer>
+          <StyledFileSysyem.FileSystemContainer key={index}>
             <h3>
               {fileName} ({passwords.length})
             </h3>

@@ -1,10 +1,15 @@
+import HeaderComponent from "../../../src/components/Header/HeaderComponent";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import HeaderComponent from "../../../src/components/Header/HeaderComponent";
+import MyProvider from "../../../src/context/MyProvider";
 
 describe("Test header component", () => {
   beforeEach(() => {
-    render(<HeaderComponent />);
+    render(
+      <MyProvider>
+        <HeaderComponent data={[]} />
+      </MyProvider>
+    );
   });
 
   it("must have a title called `Almaden...`", () => {

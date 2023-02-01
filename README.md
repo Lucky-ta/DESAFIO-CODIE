@@ -1,38 +1,143 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CODIE - Teste prático.
 
-## Getting Started
+## 🚀 Introdução:
 
-First, run the development server:
+O projeto se trata de um sistema de arquivos para armazenar senhas, onde é possível aplicar filtros, modificar e excluir as senhas.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+O sistema permite:
+
+- Criar um arquivo
+- Deletar um arquivo
+- Criar uma senha
+- Editar uma senha
+- Deletar uma senha
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+Cada pessoa tem as seguintes propriedades:
+- url
+- name (nome do documento de senha)
+- file (nome do arquivo a que o documento de senha pertence):
+- email (email do documento de senha)
+- password (senha do documento de senha)
+- Id (identificador do documento de senha)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Cada arquivo tem as seguintes propriedades:
+- fileName (nome do arquivo)
+- passwords (lista de senhas do arquivo)
+- id (identificador de criação do arquivo)
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🛠️ Construído com:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+O projeto foi desenvolvido com as seguintes ferramentas:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [NextJS](https://nextjs.org/docs/getting-started)
+- [SWR](https://swr.vercel.app/docs/getting-started)
+- [Styled Components](https://styled-components.com/docs)
+- [Axios](https://axios-http.com/docs/intro)
+- [Unform](https://unform-rocketseat.vercel.app/)
+- [Yup](https://github.com/jquense/yup/tree/62786c42ca07a2b84b05ca8c473bc01f0c868a94)
+- [React Modal](https://www.npmjs.com/package/react-modal)
+- [React Context Menu](https://github.com/vkbansal/react-contextmenu)
+- [JSON Server](https://www.npmjs.com/package/json-server)
 
-## Learn More
+### 🔧 Instalação do projeto:
 
-To learn more about Next.js, take a look at the following resources:
+1 -
+Faça um fork do projeto clicando no botão 'Fork' na parte superior direita do seu github.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2 -
+Faça um clone do projeto na sua máquina, copiando o link SSH ou HTTPS disponivel no seu fork e rodando o seguinte comando no seu terminal:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+git clone 'seu link SSH ou HTTPS'
+```
 
-## Deploy on Vercel
+3 -
+Entre no arquivo e instale as dependencias necessarias com o seguinte comando:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+ cd DESAFIO-CODIE
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+npm install
+```
+
+### 📌 Uso do projeto:
+
+Para iniciar o projeto rode o seguinte comando no seu terminal:
+`npm run dev` ou `yarn run dev`
+
+Para iniciar o servidor json rode o seguinte comando no seu terminal:
+`npm run jsonserver` ou `yarn run jsonserver`
+
+Após rodar o comando, o projeto vai estar rodando localmente na sua máquina na porta padrão (localhost:3000).
+Após rodar o comando, o servidor json vai estar rodando localmente na sua máquina na porta configurada (localhost:3001).
+
+# ⚙️ Estrutura do projeto:
+
+    O projeto possui a seguinte estrutura:
+
+```
+
+├───src
+│   ├───components
+│   │   ├───Buttons
+│   │   ├───FileSystem
+│   │   ├───Form
+│   │   ├───Header
+│   │   ├───Inputs
+│   │   ├───LeftOptions
+│   │   ├───Modal
+│   │   └───PasswordsCard
+│   ├───context
+│   ├───hooks
+│   ├───interfaces
+│   ├───pages
+│   ├───services
+│   │   └───api
+│   │       └───apiUrls
+│   ├───styles
+│   ├───utils
+│   │   ├───formatData
+│   │   └───mutateFunctions
+│   └───yupFormValidation
+├───__mocks__
+│   └───dataMock
+└───__tests__
+    ├───testComponents
+    │   ├───header
+    │   └───leftOptions
+    └───unit
+        └───Modal
+```
+
+### 🔩 Testes
+
+O projeto possui testes unicos para componentes específicos e testes unitários para testar o comportamento do app.
+
+- Os testes possuem a seguinte estrutura:
+
+```
+├───__mocks__
+│   └───dataMock
+└───__tests__
+    ├───testComponents
+    │   ├───header
+    │   └───leftOptions
+    └───unit
+        └───Modal
+```
+
+Para rodar os testes, rode o seguinte comando no terminal:
+
+```
+npm run dev
+```
+
+## 📌 Versão
+
+[Git](https://git-scm.com/) - para controle de versão.
