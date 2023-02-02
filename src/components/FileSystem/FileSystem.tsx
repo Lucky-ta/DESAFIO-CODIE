@@ -4,7 +4,7 @@ import * as StyledFileSysyem from "./index";
 export default function FileSystem({ data }) {
   console.log(data);
 
-  return (
+  return data.length !== 0 ? (
     <StyledFileSysyem.FileSystemContainer>
       {data.map(({ fileName, passwords }, index) => {
         return (
@@ -23,5 +23,7 @@ export default function FileSystem({ data }) {
         );
       })}
     </StyledFileSysyem.FileSystemContainer>
+  ) : (
+    <span>Nenhuma senha por aqui.</span>
   );
 }
