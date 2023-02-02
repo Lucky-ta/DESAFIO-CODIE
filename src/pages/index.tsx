@@ -1,17 +1,26 @@
-import HeaderComponent from "../components/Header/HeaderComponent";
-import { validateForm } from "../utils/yupFormValidation/yupValidation";
-import LeftOptions from "../components/LeftOptions/LeftOptions";
-import { createMutate } from "../utils/mutateFunctions/mutate";
-import FileSystem from "../components/FileSystem/FileSystem";
-import * as StyledButton from "../components/Buttons/index";
-import PasswordManager from "../utils/fileSystemFunctions";
-import ModalComponent from "../components/Modal/Modal";
-import { DataShape } from "../interfaces/interfaces";
-import * as GlobalContainer from "../styles/global";
-import MyContext from "../context/MyContext";
 import { useContext, useState } from "react";
+
 import { IoMdAdd } from "react-icons/io";
+
+import HeaderComponent from "../components/Pages/Home/Header/HeaderComponent";
+import LeftOptions from "../components/Pages/Home/LeftOptions/LeftOptions";
+import FileSystem from "../components/Pages/Home/FileSystem/FileSystem";
+import ModalComponent from "../components/Modal/Modal";
+
+import { validateForm } from "../utils/yupFormValidation/yupValidation";
+import { createMutate } from "../utils/mutateFunctions/mutate";
+import PasswordManager from "../utils/fileSystemFunctions";
+
 import useFetch from "../hooks/swrHook";
+
+import MyContext from "../context/MyContext";
+
+import { DataShape } from "../interfaces/interfaces";
+
+import { Button } from "../components/Buttons";
+
+import { customHomeButton } from "../styles/custom/button";
+import * as GlobalContainer from "../styles/global";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,13 +74,12 @@ export default function Home() {
         isOpen={isModalOpen}
         onSubmit={handleSubmit}
       />
-      <StyledButton.AddPasswordButton
-        data-testid="openModalButton"
+      <Button
+        customStyle={customHomeButton}
         onClick={openModal}
         type="button"
-      >
-        {<IoMdAdd />}
-      </StyledButton.AddPasswordButton>
+        text={<IoMdAdd />}
+      />
     </GlobalContainer.GlobalContainer>
   );
 }

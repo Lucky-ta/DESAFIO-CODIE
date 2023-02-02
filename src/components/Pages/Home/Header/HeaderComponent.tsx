@@ -1,5 +1,5 @@
-import { DataShape, FileShape } from "../../interfaces/interfaces";
-import MyContext from "../../context/MyContext";
+import { DataShape, FileShape } from "../../../../interfaces/interfaces";
+import MyContext from "../../../../context/MyContext";
 import { MdOutlineSort } from "react-icons/md";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { useContext, useState } from "react";

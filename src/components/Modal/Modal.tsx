@@ -44,64 +44,65 @@ export default function ModalComponent({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      style={customStyles}
-      ariaHideApp={false}
-    >
-      <StyledModal.ModalHeader>
-        <h2>Adicionar senha</h2>
-        <StyledButtons.CloseModalButton onClick={onClose}>
-          X
-        </StyledButtons.CloseModalButton>
-      </StyledModal.ModalHeader>
-      <Form initialData={initialValue} onSubmit={onSubmit}>
-        <StyledForm.Label htmlFor="url">
-          <StyledForm.FormFieldName>URL:</StyledForm.FormFieldName>
-          <Input id="url" name="url" />
-        </StyledForm.Label>
-        <StyledModal.ModalContentContainer>
-          <StyledForm.Label htmlFor="name">
-            <StyledForm.FormFieldName>Nome:</StyledForm.FormFieldName>
-            <Input id="name" name="name" />
-          </StyledForm.Label>
-          <StyledForm.Label htmlFor="file">
-            <StyledForm.FormFieldName>Pasta:</StyledForm.FormFieldName>
-            <Input id="file" name="file" />
-          </StyledForm.Label>
-          <StyledForm.Label htmlFor="email">
-            <StyledForm.FormFieldName>
-              Nome de usuário:
-            </StyledForm.FormFieldName>
-            <Input id="email" type="email" name="email" />
-          </StyledForm.Label>
-          <StyledForm.Label htmlFor="password">
-            <StyledForm.FormFieldName>Senha do site:</StyledForm.FormFieldName>
-            <Input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-            />
-            <StyledButtons.ShowHidePasswordButton
-              type="button"
-              data-testid="toggleButton"
-              onClick={toggleShowPassword}
-            >
-              {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
-            </StyledButtons.ShowHidePasswordButton>
-          </StyledForm.Label>
-        </StyledModal.ModalContentContainer>
-        <StyledModal.ModalButtonsContainer>
-          <StyledButtons.Button onClick={onClose} type="button">
-            Cancelar
-          </StyledButtons.Button>
-          <StyledButtons.Button className="secondary" type="submit">
-            Salvar
-          </StyledButtons.Button>
-        </StyledModal.ModalButtonsContainer>
-      </Form>
-      {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
-    </Modal>
+    <div></div>
+    // <Modal
+    //   isOpen={isOpen}
+    //   onRequestClose={onClose}
+    //   style={customStyles}
+    //   ariaHideApp={false}
+    // >
+    //   <StyledModal.ModalHeader>
+    //     <h2>Adicionar senha</h2>
+    //     <StyledButtons.CloseModalButton onClick={onClose}>
+    //       X
+    //     </StyledButtons.CloseModalButton>
+    //   </StyledModal.ModalHeader>
+    //   <Form initialData={initialValue} onSubmit={onSubmit}>
+    //     <StyledForm.Label htmlFor="url">
+    //       <StyledForm.FormFieldName>URL:</StyledForm.FormFieldName>
+    //       <Input id="url" name="url" />
+    //     </StyledForm.Label>
+    //     <StyledModal.ModalContentContainer>
+    //       <StyledForm.Label htmlFor="name">
+    //         <StyledForm.FormFieldName>Nome:</StyledForm.FormFieldName>
+    //         <Input id="name" name="name" />
+    //       </StyledForm.Label>
+    //       <StyledForm.Label htmlFor="file">
+    //         <StyledForm.FormFieldName>Pasta:</StyledForm.FormFieldName>
+    //         <Input id="file" name="file" />
+    //       </StyledForm.Label>
+    //       <StyledForm.Label htmlFor="email">
+    //         <StyledForm.FormFieldName>
+    //           Nome de usuário:
+    //         </StyledForm.FormFieldName>
+    //         <Input id="email" type="email" name="email" />
+    //       </StyledForm.Label>
+    //       <StyledForm.Label htmlFor="password">
+    //         <StyledForm.FormFieldName>Senha do site:</StyledForm.FormFieldName>
+    //         <Input
+    //           id="password"
+    //           type={showPassword ? "text" : "password"}
+    //           name="password"
+    //         />
+    //         <StyledButtons.ShowHidePasswordButton
+    //           type="button"
+    //           data-testid="toggleButton"
+    //           onClick={toggleShowPassword}
+    //         >
+    //           {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+    //         </StyledButtons.ShowHidePasswordButton>
+    //       </StyledForm.Label>
+    //     </StyledModal.ModalContentContainer>
+    //     <StyledModal.ModalButtonsContainer>
+    //       <StyledButtons.Button onClick={onClose} type="button">
+    //         Cancelar
+    //       </StyledButtons.Button>
+    //       <StyledButtons.Button className="secondary" type="submit">
+    //         Salvar
+    //       </StyledButtons.Button>
+    //     </StyledModal.ModalButtonsContainer>
+    //   </Form>
+    //   {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
+    // </Modal>
   );
 }

@@ -1,9 +1,7 @@
-import PasswordCard from "../PasswordsCard/PasswordCard";
+import PasswordCard from "../../../PasswordsCard/PasswordCard";
 import * as StyledFileSysyem from "./index";
 
 export default function FileSystem({ data }) {
-  console.log(data);
-
   return data.length !== 0 ? (
     <StyledFileSysyem.FileSystemContainer>
       {data.map(({ fileName, passwords }, index) => {

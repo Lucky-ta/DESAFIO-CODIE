@@ -1,4 +1,4 @@
-import HeaderComponent from "../../../src/components/Header/HeaderComponent";
+import HeaderComponent from "../../../src/components/Pages/Home/Header/HeaderComponent";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import MyProvider from "../../../src/context/MyProvider";

@@ -1,6 +1,6 @@
-import LeftOptions from "../../../src/components/LeftOptions/LeftOptions";
+import LeftOptions from "../../../src/components/Pages/Home/LeftOptions/LeftOptions";
 import { render, screen } from "@testing-library/react";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
 describe("Test left options component", () => {
   beforeEach(() => {
@@ -8,7 +8,7 @@ describe("Test left options component", () => {
   });
 
   it("must have a button called `Todos os itens`", () => {
-        const allItemsButton = screen.getByText(/Todos os itens/i);
-        expect(allItemsButton).toBeInTheDocument();
+    const allItemsButton = screen.getByText(/Todos os itens/i);
+    expect(allItemsButton).toBeInTheDocument();
   });
 });

@@ -23,8 +23,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "babel.config.js",
-    "jest.config.js"
+    "jest.config.js",
+    "./src/**/*"
   ],
   "exclude": [
     "node_modules"
