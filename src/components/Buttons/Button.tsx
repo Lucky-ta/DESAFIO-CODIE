@@ -1,6 +1,6 @@
 import { IButton } from "./interface";
 
-import * as S from "./style";
+import * as S from "./styles";
 
 export function Button({ text, type, onClick, customStyle }: IButton) {
   return (

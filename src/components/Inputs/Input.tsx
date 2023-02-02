@@ -1,8 +1,12 @@
 import { useRef, useEffect } from "react";
-import * as StyledInput from "./index";
+
 import { useField } from "unform";
 
-export default function Input({ name, ...rest }) {
+import { IInput } from "./interface";
+
+import * as S from "./styles";
+
+export function Input({ name, ...rest }: IInput) {
   const inputRef = useRef(null);
   const { fieldName, registerField, defaultValue } = useField(name);
 
@@ -15,10 +19,8 @@ export default function Input({ name, ...rest }) {
   }, [fieldName, registerField]);
 
   return (
-    <StyledInput.FormInput
-      defaultValue={defaultValue}
-      ref={inputRef}
-      {...rest}
-    />
+    <S.Input>
+      <input defaultValue={defaultValue} ref={inputRef} {...rest} />
+    </S.Input>
   );
 }

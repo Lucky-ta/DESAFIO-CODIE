@@ -5,7 +5,7 @@ import { IoMdAdd } from "react-icons/io";
 import HeaderComponent from "components/Pages/Home/Header/HeaderComponent";
 import LeftOptions from "components/Pages/Home/LeftOptions/LeftOptions";
 import FileSystem from "components/Pages/Home/FileSystem/FileSystem";
-import ModalComponent from "components/Modal/Modal";
+import { ModalComponent } from "components/Modal";
 
 import { validateForm } from "utils/yupFormValidation/yupValidation";
 import { createMutate } from "utils/mutateFunctions/mutate";
