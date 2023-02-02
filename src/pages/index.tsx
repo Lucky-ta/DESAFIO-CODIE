@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 
 import { IoMdAdd } from "react-icons/io";
 
-import HeaderComponent from "components/Pages/Home/Header/HeaderComponent";
 import LeftOptions from "components/Pages/Home/LeftOptions/LeftOptions";
 import FileSystem from "components/Pages/Home/FileSystem/FileSystem";
+import { Header } from "components/Pages/Home/Header";
 import { ModalComponent } from "components/Modal";
 
 import { validateForm } from "utils/yupFormValidation/yupValidation";
@@ -59,7 +59,7 @@ export default function Home() {
 
   return (
     <GlobalContainer.GlobalContainer>
-      <HeaderComponent data={data} />
+      <Header files={data} />
       <GlobalContainer.GlobalContainer className="secondary">
         {simpleModalStatus && <LeftOptions />}
         <GlobalContainer.GlobalContainer className="third">
