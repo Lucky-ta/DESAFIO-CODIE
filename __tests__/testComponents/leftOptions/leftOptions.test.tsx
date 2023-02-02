@@ -1,4 +1,4 @@
-import LeftOptions from "../../../src/components/Pages/Home/LeftOptions/LeftOptions";
+import LeftOptions from "../../../src/components/Pages/Home/LeftModal/LeftModal";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 

@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 
 import { IoMdAdd } from "react-icons/io";
 
-import LeftOptions from "components/Pages/Home/LeftOptions/LeftOptions";
 import FileSystem from "components/Pages/Home/FileSystem/FileSystem";
+import { LeftModal } from "components/Pages/Home/LeftModal";
 import { Header } from "components/Pages/Home/Header";
 import { ModalComponent } from "components/Modal";
 
@@ -61,7 +61,7 @@ export default function Home() {
     <GlobalContainer.GlobalContainer>
       <Header files={data} />
       <GlobalContainer.GlobalContainer className="secondary">
-        {simpleModalStatus && <LeftOptions />}
+        {simpleModalStatus && <LeftModal />}
         <GlobalContainer.GlobalContainer className="third">
           <h2>Todos os itens</h2>
           <FileSystem data={filteredFiles ? filteredFiles : data} />
