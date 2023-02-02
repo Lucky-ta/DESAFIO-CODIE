@@ -79,6 +79,14 @@ Após rodar o comando, o servidor json vai estar rodando localmente na sua máqu
 
 # ⚙️ Estrutura do projeto:
 
+   - Montei a estrutura do projeto pensando em deixar todos os arquivos relacionados um próximo do outro,
+    separar suas responsabilidades... 
+    Arquivos de API e serviços de utilidades tem suas próprias pastas para manter uma boa
+    abstração desses arquivos.
+    Não usei nenhum padrão predefinido, apenas apliquei boas práticas e opiniões comuns
+    para deixar o projeto o mais facil possível de se entender.
+   
+   
     O projeto possui a seguinte estrutura:
 
 ```
