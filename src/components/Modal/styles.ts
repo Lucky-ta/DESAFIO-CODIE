@@ -42,9 +42,15 @@ export const Modal = styled(ReactModal)`
         align-items: center;
         margin-bottom: 1rem;
 
+
+
         .close-button {
             position: absolute;
             right: 2rem;
+
+            button {
+            color: white;
+            }
         }
 
         @media (max-width: 485px) {

@@ -19,7 +19,7 @@ import { DataShape } from "interfaces/interfaces";
 
 import { Button } from "components/Buttons";
 
-import { customHomeButton } from "styles/custom/button";
+import { customHomeButton } from "styles/custom/home/buttons";
 import * as GlobalContainer from "styles/global";
 
 export default function Home() {

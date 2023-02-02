@@ -4,8 +4,8 @@ import { Form } from "unform";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
+import { Button, FormButton } from "components/Buttons";
 import { Input } from "components/Inputs/Input";
-import { Button } from "components/Buttons";
 
 import { IModal } from "./interface";
 
@@ -73,8 +73,12 @@ export function ModalComponent({
           </label>
         </div>
         <div className="buttons">
-          <Button onClick={onClose} type="button" text="Cancelar" />
-          <Button className="secondary" type="submit" text="Salvar" />
+          <FormButton className="cancel-button" onClick={onClose} type="button">
+            Cancelar
+          </FormButton>
+          <FormButton className="save-button" type="submit">
+            Salvar
+          </FormButton>
         </div>
       </Form>
       {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
