@@ -2,25 +2,24 @@ import { useContext, useState } from "react";
 
 import { IoMdAdd } from "react-icons/io";
 
-import FileSystem from "components/Pages/Home/FileSystem/FileSystem";
+import MyContext from "context/MyContext";
+
+import useFetch from "hooks/swrHook";
+
+import { FileSystem } from "components/Pages/Home/FolderSystem";
 import { LeftModal } from "components/Pages/Home/LeftModal";
 import { Header } from "components/Pages/Home/Header";
 import { ModalComponent } from "components/Modal";
+import { Button } from "components/Buttons";
 
 import { validateForm } from "utils/yupFormValidation/yupValidation";
 import { createMutate } from "utils/mutateFunctions/mutate";
 import PasswordManager from "utils/fileSystemFunctions";
 
-import useFetch from "hooks/swrHook";
-
-import MyContext from "context/MyContext";
-
 import { DataShape } from "interfaces/interfaces";
 
-import { Button } from "components/Buttons";
-
 import { customHomeButton } from "styles/custom/home/buttons";
-import * as GlobalContainer from "styles/global";
+import * as S from "styles/home";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,15 +57,15 @@ export default function Home() {
   };
 
   return (
-    <GlobalContainer.GlobalContainer>
+    <S.GlobalContainer>
       <Header files={data} />
-      <GlobalContainer.GlobalContainer className="secondary">
+      <div className="secondary">
         {simpleModalStatus && <LeftModal />}
-        <GlobalContainer.GlobalContainer className="third">
+        <div className="third">
           <h2>Todos os itens</h2>
-          <FileSystem data={filteredFiles ? filteredFiles : data} />
-        </GlobalContainer.GlobalContainer>
-      </GlobalContainer.GlobalContainer>
+          <FileSystem folders={filteredFiles ? filteredFiles : data} />
+        </div>
+      </div>
 
       <ModalComponent
         errorMessage={formError}
@@ -80,6 +79,6 @@ export default function Home() {
         type="button"
         text={<IoMdAdd />}
       />
-    </GlobalContainer.GlobalContainer>
+    </S.GlobalContainer>
   );
 }
