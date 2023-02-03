@@ -1,47 +1,23 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { MdOutlineSort } from "react-icons/md";
 import { BiSearchAlt2 } from "react-icons/bi";
 
 import MyContext from "context/MyContext";
 
-import { DataShape, FileShape } from "interfaces/interfaces";
-import { IHeader } from "./interface";
-
 import * as S from "./styles";
 
-export function Header({ files }: IHeader) {
-  const { setFilteredFiles, setSimpleModalStatus, simpleModalStatus } =
+export function Header() {
+  const { setFilterWord, setSimpleModalStatus, simpleModalStatus } =
     useContext(MyContext);
-  const [pageReload, setPageReload] = useState(false);
 
-  const filterFiles = ({ value: word }) => {
-    const wordToLowerCase = word.toString().toLowerCase();
-
-    const dataCopy = [...files];
-    const dataFilter = dataCopy.filter((object: FileShape) => {
-      return object.passwords.some((pass: DataShape) => {
-        return Object.values(pass).some((val) =>
-          val.toString().toLowerCase().includes(wordToLowerCase)
-        );
-      });
-    });
-
-    if (word.length !== 0) {
-      setFilteredFiles(dataFilter);
-      setPageReload(!pageReload);
-      return;
-    } else {
-      setFilteredFiles(files);
-      setPageReload(!pageReload);
-      return;
-    }
+  const handlerFilter = ({ value: word }) => {
+    setFilterWord(word);
   };
 
   const handleModalStatus = () => {
     setSimpleModalStatus(!simpleModalStatus);
   };
-
   return (
     <S.Header>
       <button className="left-modal-button" onClick={handleModalStatus}>
@@ -54,7 +30,7 @@ export function Header({ files }: IHeader) {
       <input
         type="text"
         placeholder="Pesquisar no meu cofre"
-        onChange={({ target }) => filterFiles(target)}
+        onChange={({ target }) => handlerFilter(target)}
       />
     </S.Header>
   );

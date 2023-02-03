@@ -1,4 +1,4 @@
-import { DataShape, FileShape } from "interfaces/interfaces";
+import { DataShape } from "interfaces/interfaces";
 
 export interface IErrorMessages {
     email?: string;
@@ -14,5 +14,6 @@ export interface IModal {
     closeModal?: () => void;
     initialValue?: DataShape;
     errorMessages?: IErrorMessages;
-    files: FileShape[];
+    requestType: string;
+    folder?: DataShape;
 };

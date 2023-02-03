@@ -1,29 +1,23 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import { TiSpanner } from "react-icons/ti";
 import { BiTrash } from "react-icons/bi";
 
-import MyContext from "context/MyContext";
-
 import useFetch from "hooks/swrHook";
 
-import { deleteMutate, updateMutate } from "utils/mutateFunctions/mutate";
-import { validateForm } from "utils/yupFormValidation/yupValidation";
 import PasswordManager from "utils/fileSystemFunctions";
 
 import { ModalComponent } from "components/Modal";
 import { Button } from "components/Buttons";
 
-import { DataShape } from "interfaces/interfaces";
 import { IPasswordCard } from "./interface";
 
+import { getFiles } from "services/api/filesApi";
 import * as S from "./styles";
 
 export function FolderCard({ password }: IPasswordCard) {
-  const { data, mutate } = useFetch();
-  const { setReloadPageTrigger, reloadPageTrigger } = useContext(MyContext);
+  const { mutate } = useFetch();
 
-  const [formError, setFormError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const redirectToUrl = () => {
@@ -39,22 +33,9 @@ export function FolderCard({ password }: IPasswordCard) {
   };
 
   const handleDeleteCard = async () => {
-    deleteMutate(data, password, mutate);
     await PasswordManager.deleteUserPassword(password);
-    return setReloadPageTrigger(!reloadPageTrigger);
-  };
-
-  const handleEditPassword = async (formData: DataShape) => {
-    const validationResult = await validateForm(formData);
-    if (!validationResult) {
-      setFormError("Validation failed. Please check the form data.");
-      return;
-    }
-
-    updateMutate(data, formData, mutate);
-    await PasswordManager.updateUserPassword(password, formData);
-    setIsModalOpen(false);
-    setReloadPageTrigger(!reloadPageTrigger);
+    const allFiles = await getFiles();
+    mutate(allFiles);
   };
 
   return (
@@ -75,11 +56,11 @@ export function FolderCard({ password }: IPasswordCard) {
         </div>
       </div>
       <ModalComponent
-        errorMessage={formError}
+        requestType="PATCH"
         initialValue={password}
-        onClose={closeModal}
         isOpen={isModalOpen}
-        onSubmit={handleEditPassword}
+        closeModal={closeModal}
+        folder={password}
       />
     </S.FolderCard>
   );

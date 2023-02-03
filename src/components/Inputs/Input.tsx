@@ -17,7 +17,7 @@ export function Input({ name, ...rest }: IInput) {
       path: "value",
     });
   }, [fieldName, registerField]);
-  console.log(error);
+
   return (
     <S.Input>
       <input defaultValue={defaultValue} ref={inputRef} {...rest} />

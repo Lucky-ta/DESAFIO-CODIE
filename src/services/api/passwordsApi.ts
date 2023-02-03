@@ -2,14 +2,9 @@ import { DataShape } from "interfaces/interfaces";
 
 import AXIOS_API from "./api";
 
-export const createPassword = async (data: DataShape) => {
+export const createPassword = async (password: DataShape) => {
     try {
-        const response = await AXIOS_API.post("/userPasswords",
-            JSON.stringify(data),
-            {
-                headers: { "Content-Type": "application/json" },
-            }
-        );
+        const response = await AXIOS_API.post("/passwords", password);
         return response.data;
     } catch (e: any) {
         return { message: e.message };
@@ -18,17 +13,21 @@ export const createPassword = async (data: DataShape) => {
 
 export const deletePasswordById = async (passwordId: number) => {
     try {
-        const response = await AXIOS_API.delete(`/userPasswords/${passwordId}`);
+        const response = await AXIOS_API.delete(`/passwords/${passwordId}`);
         return response.data;
     } catch (e: any) {
         return { message: e.message };
     }
 };
 
-export const updatePasswordById = async (passwordId: number, updatedData: DataShape) => {
+export const updatePasswordById = async (
+    updatedPassword: DataShape,
+    passwordId: number
+) => {
     try {
-        const response = await AXIOS_API.put(`/userPasswords/${passwordId}`,
-            updatedData
+        const response = await AXIOS_API.put(
+            `/passwords/${passwordId}`,
+            updatedPassword
         );
         return response.data;
     } catch (e: any) {

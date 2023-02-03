@@ -5,5 +5,4 @@ export interface IButton extends React.ButtonHTMLAttributes<any> {
     type: "submit" | "button";
     onClick?: (value?: any) => void;
     customStyle?: any;
-    customClassName?: string;
 };

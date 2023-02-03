@@ -1,12 +1,11 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
-import MyContext from "context/MyContext";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 import useFetch from "hooks/swrHook";
 
+import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
-
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 import { Button, FormButton } from "components/Buttons";
 import { Input } from "components/Inputs/Input";
@@ -15,40 +14,62 @@ import { DataShape } from "interfaces/interfaces";
 import { IModal } from "./interface";
 
 import { yupFormValidation } from "utils/yupFormValidation/yupValidation";
-import { createMutate } from "utils/mutateFunctions/mutate";
 import PasswordManager from "utils/fileSystemFunctions";
 
+import { getFiles } from "services/api/filesApi";
 import * as S from "./styles";
 
 export function ModalComponent({
   initialValue,
   isOpen,
   closeModal,
-  files,
+  requestType,
+  folder,
 }: IModal) {
   const [showPassword, setShowPassword] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { reloadPageTrigger, setReloadPageTrigger } = useContext(MyContext);
+  const formRef = useRef<FormHandles>();
 
-  const formRef: any = useRef();
   const { mutate } = useFetch();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (formData: DataShape) => {
+  const createFolder = async (formData: DataShape) => {
     const validationResult = await yupFormValidation(formData);
     if (validationResult) {
-      console.log(formRef);
-
       formRef.current.setErrors(validationResult);
     } else {
-      createMutate(files, formData, mutate);
       await PasswordManager.createUserPassword(formData);
-      setIsModalOpen(false);
-      return setReloadPageTrigger(!reloadPageTrigger);
+      const allFiles = await getFiles();
+      mutate(allFiles);
+      closeModal();
+    }
+  };
+
+  const editFolder = async (formData: DataShape) => {
+    const validationResult = await yupFormValidation(formData);
+    if (validationResult) {
+      formRef.current.setErrors(validationResult);
+    } else {
+      await PasswordManager.updateUserPassword(folder, formData);
+      const allFiles = await getFiles();
+      mutate(allFiles);
+      closeModal();
+    }
+  };
+
+  const handleSubmit = (formData: DataShape) => {
+    switch (requestType) {
+      case "POST":
+        createFolder(formData);
+        break;
+      case "PATCH":
+        editFolder(formData);
+        break;
+      default:
+        break;
     }
   };
 

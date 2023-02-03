@@ -2,15 +2,9 @@ import { IButton } from "./interface";
 
 import * as S from "./styles";
 
-export function Button({
-  text,
-  type,
-  onClick,
-  customStyle,
-  customClassName,
-}: IButton) {
+export function Button({ text, type, onClick, customStyle }: IButton) {
   return (
-    <S.Button className={customClassName}>
+    <S.Button>
       <button style={customStyle} type={type} onClick={onClick}>
         {text}
       </button>

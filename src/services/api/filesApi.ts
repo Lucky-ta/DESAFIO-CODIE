@@ -26,7 +26,7 @@ export const createFile = async (password: DataShape) => {
 };
 
 
-export const addPassword = async (fileName: string, password: DataShape) => {
+export const addPasswordToFile = async (fileName: string, password: DataShape) => {
   try {
     const response = await AXIOS_API.get(`/files?fileName=${fileName}`);
     const file = response.data[0];
@@ -95,7 +95,7 @@ export const updatePassword = async (fileName: string, fileId: number, updatedPa
 
 export const checkIfPasswordIsUnique = async (fileName: string) => {
   try {
-    const response = await AXIOS_API.get(`/folders?fileName=${fileName}`);
+    const response = await AXIOS_API.get(`/files?fileName=${fileName}`);
     const { data } = response;
 
     const passwordExists = data[0].passwords.length === 1;

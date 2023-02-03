@@ -9,12 +9,11 @@ class PasswordManager {
     const { file: fileName } = newPassword;
 
     const allFiles = await ApiRoute.getFiles();
-    console.log(allFiles);
 
     const isFileExists = allFiles.filter((file: FileShape) => file.fileName === fileName);
 
     if (isFileExists.length !== 0) {
-      const result = await ApiRoute.addPassword(fileName, newPassword);
+      const result = await ApiRoute.addPasswordToFile(fileName, newPassword);
       return result;
     }
     const result = await ApiRoute.createFile(newPassword)
@@ -37,7 +36,7 @@ class PasswordManager {
 
   async updateUserPassword(password: DataShape, formData: DataShape) {
     const { file: fileName } = password;
-    const updatedPassword = await updatePasswordById(password.id, formData);
+    const updatedPassword = await updatePasswordById(formData, password.id);
 
     const fileId = await ApiRoute.checkIfPasswordIsUnique(fileName);
     return await ApiRoute.updatePassword(fileName, fileId.data, updatedPassword);
