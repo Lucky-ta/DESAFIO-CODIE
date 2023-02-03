@@ -1,8 +1,11 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import MyProvider from "../../../src/context/MyProvider";
-import Home from "../../../src/pages";
 import "@testing-library/jest-dom";
+
 import { filesMock } from "../../../__mocks__/dataMock/fileMock";
+
+import MyProvider from "context/MyProvider";
+
+import Home from "pages";
 
 jest.mock("swr", () => {
   return {

@@ -1,13 +1,15 @@
-import HeaderComponent from "../../../src/components/Pages/Home/Header/HeaderComponent";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import MyProvider from "../../../src/context/MyProvider";
+
+import { Header } from "components/Pages/Home/Header";
+
+import MyProvider from "context/MyProvider";
 
 describe("Test header component", () => {
   beforeEach(() => {
     render(
       <MyProvider>
-        <HeaderComponent data={[]} />
+        <Header files={[]} />
       </MyProvider>
     );
   });
