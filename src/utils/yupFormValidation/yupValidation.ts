@@ -3,14 +3,24 @@ import { formatData } from "utils/formatData/formatUserData";
 import { DataShape } from "interfaces/interfaces";
 
 import { schema } from "./yupSchemas";
+import * as Yup from "yup";
 
-export const validateForm = async (formData: DataShape) => {
+export const yupFormValidation = async (formData: DataShape) => {
     const formatedData = formatData(formData);
 
     try {
-        const result = await schema.validate(formatedData);
-        return result;
+        await schema.validate(formatedData, {
+            abortEarly: false,
+        });
     } catch (e: any) {
-        return { message: e.message }
+        if (e instanceof Yup.ValidationError) {
+            const errorMessages = {};
+
+            e.inner.forEach((error) => {
+                errorMessages[error.path] = error.message;
+            });
+
+            return errorMessages;
+        }
     }
 };

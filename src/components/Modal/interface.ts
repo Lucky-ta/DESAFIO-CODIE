@@ -1,9 +1,18 @@
-import { DataShape } from "interfaces/interfaces";
+import { DataShape, FileShape } from "interfaces/interfaces";
+
+export interface IErrorMessages {
+    email?: string;
+    file?: string;
+    name?: string;
+    password?: string;
+    url?: string;
+}
 
 export interface IModal {
-    onSubmit: (data: DataShape) => void;
+    onSubmit?: (data: DataShape) => void;
     isOpen: boolean;
-    onClose: () => void;
+    closeModal?: () => void;
     initialValue?: DataShape;
-    errorMessage: string;
+    errorMessages?: IErrorMessages;
+    files: FileShape[];
 };

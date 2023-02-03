@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-import { useField } from "unform";
+import { useField } from "@unform/core";
 
 import { IInput } from "./interface";
 
@@ -8,7 +8,7 @@ import * as S from "./styles";
 
 export function Input({ name, ...rest }: IInput) {
   const inputRef = useRef(null);
-  const { fieldName, registerField, defaultValue } = useField(name);
+  const { fieldName, registerField, defaultValue, error } = useField(name);
 
   useEffect(() => {
     registerField({
@@ -17,10 +17,11 @@ export function Input({ name, ...rest }: IInput) {
       path: "value",
     });
   }, [fieldName, registerField]);
-
+  console.log(error);
   return (
     <S.Input>
       <input defaultValue={defaultValue} ref={inputRef} {...rest} />
+      <span style={{ color: "red" }}>{error}</span>
     </S.Input>
   );
 }
