@@ -1,28 +1,4 @@
 {
-  "passwords": [
-    {
-      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-      "name": "John Snow",
-      "file": "SNOW",
-      "email": "lucmaieski@hotmail.com",
-      "password": "asdfasfasf",
-      "id": 6
-    }
-  ],
-  "files": [
-    {
-      "fileName": "SNOW",
-      "passwords": [
-        {
-          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
-          "name": "John Snow",
-          "file": "SNOW",
-          "email": "lucmaieski@hotmail.com",
-          "password": "asdfasfasf",
-          "id": 6
-        }
-      ],
-      "id": 2
-    }
-  ]
+  "passwords": [],
+  "files": []
 }
