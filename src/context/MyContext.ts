@@ -1,10 +1,11 @@
-import { FileShape } from "../interfaces/interfaces";
 import { createContext } from "react";
 
-export type ContextDataShape = {
+import { FileShape } from "interfaces/interfaces";
+
+export interface ContextDataShape {
     reloadPageTrigger: boolean;
     setReloadPageTrigger: (value: boolean) => void;
-    filteredFiles: FileShape;
+    filteredFiles: FileShape[];
     setFilteredFiles: (value: FileShape[]) => void;
     simpleModalStatus: boolean;
     setSimpleModalStatus: (value: boolean) => void;

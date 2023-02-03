@@ -1,3 +1,5 @@
+import { DataShape, FileShape } from "interfaces/interfaces";
+
 export const updateMutate = (data, formData, mutate) => {
     const originalFileIndex = data.findIndex(
         (file) => file.fileName === formData.file
@@ -53,7 +55,7 @@ export const updateMutate = (data, formData, mutate) => {
 }
 
 export const createMutate = (data, formData, mutate) => {
-    const file = data.find((file: any) => file.fileName === formData.file);
+    const file = data.find((file: FileShape) => file.fileName === formData.file);
 
     if (!file) {
         const newFile = {
@@ -83,9 +85,9 @@ export const createMutate = (data, formData, mutate) => {
 }
 
 export const deleteMutate = (data, password, mutate) => {
-    const file = data.find((file: any) => file.fileName === password.file);
+    const file = data.find((file: FileShape) => file.fileName === password.file);
     const updatedPasswords = file.passwords.filter(
-        (filterPass: any) => filterPass.id !== password.id
+        (filterPass: DataShape) => filterPass.id !== password.id
     );
 
     const fileIndex = data.findIndex(

@@ -3,9 +3,9 @@ import { useContext, useState } from "react";
 import { MdOutlineSort } from "react-icons/md";
 import { BiSearchAlt2 } from "react-icons/bi";
 
-import MyContext from "../../../../context/MyContext";
+import MyContext from "context/MyContext";
 
-import { DataShape, FileShape } from "../../../../interfaces/interfaces";
+import { DataShape, FileShape } from "interfaces/interfaces";
 import { IHeader } from "./interface";
 
 import * as S from "./styles";

@@ -1,6 +1,8 @@
-import { GlobalStyles } from "../styles/global";
 import type { AppProps } from "next/app";
-import MyProvider from "../context/MyProvider";
+
+import { GlobalStyles } from "styles/global";
+
+import MyProvider from "context/MyProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

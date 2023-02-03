@@ -39,6 +39,14 @@
       "email": "lucmaieski@gmail.comf",
       "password": "fasdfaf",
       "id": 6
+    },
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas Maieski Marques",
+      "file": "GOOGLE",
+      "email": "lucasmaieski@gmail.com",
+      "password": "asdfasdfdasfd",
+      "id": 7
     }
   ],
   "files": [
@@ -68,6 +76,14 @@
           "email": "lucmaieski@gmail.com",
           "password": "asdfasfasfd",
           "id": 5
+        },
+        {
+          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+          "name": "Lucas Maieski Marques",
+          "file": "GOOGLE",
+          "email": "lucasmaieski@gmail.com",
+          "password": "asdfasdfdasfd",
+          "id": 7
         }
       ],
       "id": 1

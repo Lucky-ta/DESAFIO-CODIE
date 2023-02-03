@@ -1,4 +1,5 @@
-import { DataShape } from "../../interfaces/interfaces";
+import { DataShape } from "interfaces/interfaces";
+
 import AXIOS_API from "./api";
 
 export const createPassword = async (data: DataShape) => {

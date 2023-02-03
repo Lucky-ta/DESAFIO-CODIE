@@ -1,16 +1,17 @@
-import { createPassword, deletePasswordById, updatePasswordById } from "../services/api/passwordsApi";
-import { DataShape } from "../interfaces/interfaces";
-import * as ApiRoute from '../services/api/filesApi'
+import { createPassword, deletePasswordById, updatePasswordById } from "services/api/passwordsApi";
+import * as ApiRoute from 'services/api/filesApi'
+
+import { DataShape, FileShape } from "interfaces/interfaces";
 
 class PasswordManager {
   async createUserPassword(password: DataShape) {
-    console.log("aqui");
-
     const newPassword: DataShape = await createPassword(password);
     const { file: fileName } = newPassword;
 
     const allFiles = await ApiRoute.getFiles();
-    const isFileExists = allFiles.filter((file) => file.fileName === fileName);
+    console.log(allFiles);
+
+    const isFileExists = allFiles.filter((file: FileShape) => file.fileName === fileName);
 
     if (isFileExists.length !== 0) {
       const result = await ApiRoute.addPassword(fileName, newPassword);

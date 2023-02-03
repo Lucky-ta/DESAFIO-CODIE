@@ -3,18 +3,18 @@ import { useContext, useState } from "react";
 import { TiSpanner } from "react-icons/ti";
 import { BiTrash } from "react-icons/bi";
 
-import MyContext from "../../context/MyContext";
+import MyContext from "context/MyContext";
 
-import useFetch from "../../hooks/swrHook";
+import useFetch from "hooks/swrHook";
 
-import { deleteMutate, updateMutate } from "../../utils/mutateFunctions/mutate";
-import { validateForm } from "../../utils/yupFormValidation/yupValidation";
-import PasswordManager from "../../utils/fileSystemFunctions";
+import { deleteMutate, updateMutate } from "utils/mutateFunctions/mutate";
+import { validateForm } from "utils/yupFormValidation/yupValidation";
+import PasswordManager from "utils/fileSystemFunctions";
 
 import { ModalComponent } from "components/Modal";
 import { Button } from "components/Buttons";
 
-import { DataShape } from "../../interfaces/interfaces";
+import { DataShape } from "interfaces/interfaces";
 import { IPasswordCard } from "./interface";
 
 import * as S from "./styles";

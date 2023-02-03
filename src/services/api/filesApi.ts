@@ -1,4 +1,5 @@
-import { DataShape } from "../../interfaces/interfaces";
+import { DataShape, FileShape } from "interfaces/interfaces";
+
 import AXIOS_API from "./api"
 
 export const getFiles = async () => {
@@ -41,7 +42,6 @@ export const addPassword = async (fileName: string, password: DataShape) => {
 export const deleteFile = async (fileId: number) => {
   try {
     const response = await AXIOS_API.delete(`/files/${fileId}`);
-    console.log(response.data);
     return response.data;
   } catch (e: any) {
     return e.message;
@@ -50,9 +50,9 @@ export const deleteFile = async (fileId: number) => {
 
 export const deletePassword = async (fileName: string, fileId: number, passwordId: number) => {
   const files = await AXIOS_API.get('/files');
-  const file = files.data.find((file: any) => file.fileName === fileName);
+  const file = files.data.find((file: FileShape) => file.fileName === fileName);
 
-  const updatedPasswords = file.passwords.filter((password: any) => password.id !== passwordId);
+  const updatedPasswords = file.passwords.filter((password: DataShape) => password.id !== passwordId);
 
   try {
     const response = await AXIOS_API.patch(`/files/${fileId}`, { passwords: updatedPasswords }, {
@@ -67,19 +67,17 @@ export const deletePassword = async (fileName: string, fileId: number, passwordI
 
 export const updatePassword = async (fileName: string, fileId: number, updatedPassword: DataShape) => {
   const files = await AXIOS_API.get('/files');
-  const file = files.data.find((file: any) => file.fileName === fileName && file.id === fileId);
+  const file = files.data.find((file: FileShape) => file.fileName === fileName && file.id === fileId);
 
   if (!file) {
     return { error: 'File with name "${fileName}" and id "${fileId}" not found ' };
   }
 
-  const passwordIndex = file.passwords.findIndex((password: any) => password.id === updatedPassword.id);
+  const passwordIndex = file.passwords.findIndex((password: DataShape) => password.id === updatedPassword.id);
 
   if (passwordIndex === -1) {
     return { error: 'Password with id "${updatedPassword.id}" not found' };
   }
-
-  console.log(updatedPassword);
 
   file.passwords[passwordIndex] = updatedPassword;
 
@@ -87,7 +85,6 @@ export const updatePassword = async (fileName: string, fileId: number, updatedPa
     const response = await AXIOS_API.patch(`/files/${fileId}`, file, {
       headers: { 'Content-Type': 'application/json' }
     });
-    console.log(response.data);
 
     return response.data;
   } catch (e: any) {
@@ -98,7 +95,7 @@ export const updatePassword = async (fileName: string, fileId: number, updatedPa
 
 export const checkIfPasswordIsUnique = async (fileName: string) => {
   try {
-    const response = await AXIOS_API.get(`/files?fileName=${fileName}`);
+    const response = await AXIOS_API.get(`/folders?fileName=${fileName}`);
     const { data } = response;
 
     const passwordExists = data[0].passwords.length === 1;

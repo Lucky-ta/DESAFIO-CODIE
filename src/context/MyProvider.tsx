@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import { FileShape } from "interfaces/interfaces";
+
 import MyContext from "./MyContext";
 
 interface MyProviderPropsShape {
@@ -7,7 +10,7 @@ interface MyProviderPropsShape {
 
 export default function MyProvider({ children }: MyProviderPropsShape) {
   const [reloadPageTrigger, setReloadPageTrigger] = useState(false);
-  const [filteredFiles, setFilteredFiles] = useState<any>();
+  const [filteredFiles, setFilteredFiles] = useState<FileShape[]>();
   const [simpleModalStatus, setSimpleModalStatus] = useState(false);
 
   const data = {

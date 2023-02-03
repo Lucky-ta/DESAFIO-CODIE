@@ -1,13 +1,13 @@
 import { FolderCard } from "components/FolderCard";
 
-import { IFolderSystem } from "./interface";
+import { IFilesSystem } from "./interface";
 
 import * as S from "./styles";
 
-export function FileSystem({ folders }: IFolderSystem) {
-  return folders.length !== 0 ? (
+export function FileSystem({ files }: IFilesSystem) {
+  return files.length !== 0 ? (
     <S.FileSystem>
-      {folders.map(({ fileName, passwords }, index) => {
+      {files.map(({ fileName, passwords }, index) => {
         return (
           <div key={index}>
             <h3>{`${fileName} (${passwords.length})`}</h3>
