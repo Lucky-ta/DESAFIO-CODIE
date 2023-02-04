@@ -1,3 +1,4 @@
+import { SubMenu } from "react-contextmenu";
 import styled from "styled-components";
 
 export const FolderCard = styled.div`
@@ -78,6 +79,7 @@ export const FolderCard = styled.div`
   }
 
   .context-menu {
+    display: block;
     position: absolute;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
@@ -88,6 +90,7 @@ export const FolderCard = styled.div`
 
     .menu-item {
       display: flex;
+      gap: 0.5rem;
       align-items: center;
       padding: 10px;
       font-size: 14px;
@@ -96,6 +99,43 @@ export const FolderCard = styled.div`
       &:hover {
         background-color: #f5f5f5;
       }
+
+      span {
+        color: #333;
+      }
+    }
+
+    .menu-divider {
+      border: 1px solid #6e7a75;
+    }
+
+    .submenu {
+      align-items: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      div.submenu-item-container {
+        display: flex;
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        gap: 0.6rem;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+        border-radius: 2px;
+        margin: 0.5rem;
+        margin-top: -0.5rem;
+        min-width: 6rem;
+      }
+    }
+
+    .submenu:hover .submenu-item-container {
+      display: flex;
     }
   }
 `;

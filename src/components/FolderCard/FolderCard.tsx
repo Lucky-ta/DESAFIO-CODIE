@@ -1,15 +1,21 @@
 import { useState } from "react";
 
-import { ContextMenu, ContextMenuTrigger, MenuItem } from "react-contextmenu";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  MenuItem,
+  SubMenu,
+} from "react-contextmenu";
 
 import { TiSpanner } from "react-icons/ti";
-import { BiTrash } from "react-icons/bi";
+import { BiTrash, BiChevronRight } from "react-icons/bi";
+import { FaClone } from "react-icons/fa";
 
 import useFetch from "hooks/swrHook";
 
 import PasswordManager from "utils/fileSystemFunctions";
 
-import { addPasswordToFile, getFiles } from "services/api/filesApi";
+import { getFiles } from "services/api/filesApi";
 
 import { ModalComponent } from "components/Modal";
 import { Button } from "components/Buttons";
@@ -84,15 +90,29 @@ export function FolderCard({ password }: IPasswordCard) {
 
       <ContextMenu className="context-menu" id={JSON.stringify(password.id)}>
         <MenuItem className="menu-item" onClick={openModal}>
-          Editar
+          <TiSpanner className="menu-item-icon" />
+          <span className="menu-item-text">Editar</span>
         </MenuItem>
         <MenuItem className="menu-item" onClick={handleDeleteCard}>
-          Excluir
+          <BiTrash className="menu-item-icon" />
+          <span className="menu-item-text">Excuir</span>
         </MenuItem>
         <MenuItem className="menu-item" onClick={clonePassword}>
-          Clonar
+          <FaClone className="menu-item-icon" />
+          <span className="menu-item-text">Clonar</span>
         </MenuItem>
-        <MenuItem divider />
+
+        <div className="submenu">
+          <SubMenu title="Mover para a pasta">
+            <BiChevronRight />
+            <div className="submenu-item-container">
+              <MenuItem className="submenu-item menu-item">None</MenuItem>
+              <MenuItem className="submenu-item menu-item">GOOGLE</MenuItem>
+              <MenuItem className="submenu-item menu-item">SNOW</MenuItem>
+            </div>
+          </SubMenu>
+        </div>
+
         <MenuItem
           className="menu-item"
           onClick={() => copyToClipBoard(password.password)}
