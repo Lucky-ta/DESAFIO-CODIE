@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { ContextMenu, ContextMenuTrigger, MenuItem } from "react-contextmenu";
+
 import { TiSpanner } from "react-icons/ti";
 import { BiTrash } from "react-icons/bi";
 
@@ -13,6 +15,7 @@ import { Button } from "components/Buttons";
 import { IPasswordCard } from "./interface";
 
 import { getFiles } from "services/api/filesApi";
+
 import * as S from "./styles";
 
 export function FolderCard({ password }: IPasswordCard) {
@@ -22,6 +25,10 @@ export function FolderCard({ password }: IPasswordCard) {
 
   const redirectToUrl = () => {
     window.open(password.url, "_blank");
+  };
+
+  const copyToClipBoard = (text: string) => {
+    navigator.clipboard.writeText(text);
   };
 
   const openModal = () => {
@@ -40,21 +47,54 @@ export function FolderCard({ password }: IPasswordCard) {
 
   return (
     <S.FolderCard>
-      <div className="card-header">
-        <Button onClick={redirectToUrl} type="button" text="Iniciar" />
-      </div>
-
-      <div className="card-content">
-        <div>
-          <h3 className="name">{password.name}</h3>
-          <h3 className="email">{password.email}</h3>
+      <ContextMenuTrigger id={JSON.stringify(password.id)}>
+        <div className="card-header">
+          <Button onClick={redirectToUrl} type="button" text="Iniciar" />
         </div>
 
-        <div className="card-buttons">
-          <Button onClick={openModal} type="button" text={<TiSpanner />} />
-          <Button onClick={handleDeleteCard} type="button" text={<BiTrash />} />
+        <div className="card-content">
+          <div>
+            <h3 className="name">{password.name}</h3>
+            <h3 className="email">{password.email}</h3>
+          </div>
+
+          <div className="card-buttons">
+            <Button onClick={openModal} type="button" text={<TiSpanner />} />
+            <Button
+              onClick={handleDeleteCard}
+              type="button"
+              text={<BiTrash />}
+            />
+          </div>
         </div>
-      </div>
+      </ContextMenuTrigger>
+
+      <ContextMenu className="context-menu" id={JSON.stringify(password.id)}>
+        <MenuItem className="menu-item" onClick={openModal}>
+          Editar
+        </MenuItem>
+        <MenuItem className="menu-item" onClick={handleDeleteCard}>
+          Excluir
+        </MenuItem>
+        <MenuItem className="menu-item">Clonar</MenuItem>
+        <MenuItem divider />
+        <MenuItem
+          className="menu-item"
+          onClick={() => copyToClipBoard(password.password)}
+        >
+          Copiar senha
+        </MenuItem>
+        <MenuItem
+          className="menu-item"
+          onClick={() => copyToClipBoard(password.url)}
+        >
+          Copiar URL
+        </MenuItem>
+        <MenuItem className="menu-item" onClick={redirectToUrl}>
+          Ir para URL
+        </MenuItem>
+      </ContextMenu>
+
       <ModalComponent
         requestType="PATCH"
         initialValue={password}

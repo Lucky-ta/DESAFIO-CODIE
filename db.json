@@ -1,4 +1,28 @@
 {
-  "passwords": [],
-  "files": []
+  "passwords": [
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Snow",
+      "file": "SNOW",
+      "email": "lucmaieski@hotmail.com",
+      "password": "adfasdfasf",
+      "id": 3
+    }
+  ],
+  "files": [
+    {
+      "fileName": "SNOW",
+      "passwords": [
+        {
+          "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+          "name": "Snow",
+          "file": "SNOW",
+          "email": "lucmaieski@hotmail.com",
+          "password": "adfasdfasf",
+          "id": 3
+        }
+      ],
+      "id": 2
+    }
+  ]
 }
