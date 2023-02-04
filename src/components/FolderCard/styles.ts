@@ -11,6 +11,7 @@ export const FolderCard = styled.div`
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   max-width: 20rem;
   min-height: 10rem;
+  padding-bottom: 1rem;
 
   .card-header {
     height: 5rem;
