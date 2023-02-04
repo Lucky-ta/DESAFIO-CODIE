@@ -1,5 +1,3 @@
-import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
-
 import { FolderCard } from "components/FolderCard";
 
 import { IFilesSystem } from "./interface";

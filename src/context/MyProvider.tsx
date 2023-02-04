@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 
-import { FileShape } from "interfaces/interfaces";
-
 import MyContext from "./MyContext";
 
 interface MyProviderPropsShape {

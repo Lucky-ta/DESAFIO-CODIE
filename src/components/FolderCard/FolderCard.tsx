@@ -9,12 +9,12 @@ import useFetch from "hooks/swrHook";
 
 import PasswordManager from "utils/fileSystemFunctions";
 
+import { getFiles } from "services/api/filesApi";
+
 import { ModalComponent } from "components/Modal";
 import { Button } from "components/Buttons";
 
 import { IPasswordCard } from "./interface";
-
-import { getFiles } from "services/api/filesApi";
 
 import * as S from "./styles";
 

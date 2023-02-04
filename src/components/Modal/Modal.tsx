@@ -17,6 +17,7 @@ import { yupFormValidation } from "utils/yupFormValidation/yupValidation";
 import PasswordManager from "utils/fileSystemFunctions";
 
 import { getFiles } from "services/api/filesApi";
+
 import * as S from "./styles";
 
 export function ModalComponent({
