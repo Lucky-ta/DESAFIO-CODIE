@@ -5,7 +5,7 @@ export const LeftModal = styled.div`
   background-color: #3d4a56;
   width: 100%;
   max-width: 20rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.24);
   border-bottom-right-radius: 6px;
   height: 40rem;
 
@@ -15,7 +15,7 @@ export const LeftModal = styled.div`
     padding-top: 1rem;
   }
 
-  @media only screen and (min-width: 700px) {
+  @media (min-width: 700px) {
     animation-name: slidein;
     animation-duration: 0.8s;
     @keyframes slidein {
@@ -35,15 +35,14 @@ export const LeftModal = styled.div`
     background-color: #222f3b;
     border: none;
     width: 100%;
-    padding: 1rem;
-    padding-left: 1.5rem;
+    padding: 1rem 1.5rem ;
     display: flex;
-    gap: 1.6rem;
     align-items: center;
     font-size: 1.3rem;
     font-weight: bold;
     margin-top: 1.1rem;
     transition: all 0.3s;
+    gap: 1rem;
 
     @media (max-width: 960px) {
       margin: auto;
@@ -51,7 +50,7 @@ export const LeftModal = styled.div`
     }
 
     cursor: pointer;
-    &&:hover {
+    &:hover {
       background-color: whitesmoke;
       color: #222f3b;
     }
