@@ -4,9 +4,8 @@ import * as ApiRoute from 'services/api/filesApi'
 import { DataShape, FileShape } from "interfaces/interfaces";
 
 class PasswordManager {
-  async createUserPassword(password: DataShape) {
+  async createUserPassword(password: DataShape, fileName: string) {
     const newPassword: DataShape = await createPassword(password);
-    const { file: fileName } = newPassword;
 
     const allFiles = await ApiRoute.getFiles();
 

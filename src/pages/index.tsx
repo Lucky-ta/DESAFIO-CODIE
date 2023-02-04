@@ -36,13 +36,17 @@ export default function Home() {
   const filterData = () => {
     const wordToLowerCase = filterWord.toString().toLowerCase();
 
-    return data.filter((object: FileShape) => {
-      return object.passwords.some((pass: DataShape) => {
+    return data.reduce((filteredFiles, object: FileShape) => {
+      const filteredPasswords = object.passwords.filter((pass: DataShape) => {
         return Object.values(pass).some((val) =>
           val.toString().toLowerCase().includes(wordToLowerCase)
         );
       });
-    });
+      if (filteredPasswords.length > 0) {
+        filteredFiles.push({ ...object, passwords: filteredPasswords });
+      }
+      return filteredFiles;
+    }, [] as FileShape[]);
   };
 
   return (

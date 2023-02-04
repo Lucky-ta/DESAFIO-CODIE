@@ -7,8 +7,8 @@ import {
   SubMenu,
 } from "react-contextmenu";
 
-import { TiSpanner } from "react-icons/ti";
 import { BiTrash, BiChevronRight } from "react-icons/bi";
+import { TiSpanner } from "react-icons/ti";
 import { FaClone } from "react-icons/fa";
 
 import useFetch from "hooks/swrHook";
@@ -25,9 +25,53 @@ import { IPasswordCard } from "./interface";
 import * as S from "./styles";
 
 export function FolderCard({ password }: IPasswordCard) {
-  const { mutate } = useFetch();
+  const { data, mutate } = useFetch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const clonePassword = async () => {
+    const CLONE_ID = 999;
+    const passwordClone = {
+      ...password,
+      id: password.id + CLONE_ID,
+    };
+
+    await PasswordManager.createUserPassword(passwordClone, passwordClone.file);
+    const allFiles = await getFiles();
+    mutate(allFiles);
+  };
+
+  const movePassword = async (_e, data) => {
+    console.log(data.item);
+    const formatedPassword = {
+      ...password,
+      file: data.item || "NONE",
+    };
+
+    await PasswordManager.deleteUserPassword(password);
+
+    await PasswordManager.createUserPassword(
+      formatedPassword,
+      formatedPassword.file
+    );
+    const allFiles = await getFiles();
+    mutate(allFiles);
+  };
+
+  const handleDeleteCard = async () => {
+    await PasswordManager.deleteUserPassword(password);
+    const allFiles = await getFiles();
+    mutate(allFiles);
+  };
+
+  const getFileNames = (): string[] => {
+    let fileNames: string[] = [];
+    data.map(({ fileName }) => {
+      fileNames = [...fileNames, fileName];
+    });
+
+    return fileNames;
+  };
 
   const redirectToUrl = () => {
     window.open(password.url, "_blank");
@@ -37,31 +81,12 @@ export function FolderCard({ password }: IPasswordCard) {
     navigator.clipboard.writeText(text);
   };
 
-  const clonePassword = async () => {
-    const CLONE_ID = 999;
-
-    const passwordClone = {
-      ...password,
-      id: password.id + CLONE_ID,
-    };
-
-    await PasswordManager.createUserPassword(passwordClone);
-    const allFiles = await getFiles();
-    mutate(allFiles);
-  };
-
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
-
-  const handleDeleteCard = async () => {
-    await PasswordManager.deleteUserPassword(password);
-    const allFiles = await getFiles();
-    mutate(allFiles);
   };
 
   return (
@@ -76,7 +101,6 @@ export function FolderCard({ password }: IPasswordCard) {
             <h3 className="name">{password.name}</h3>
             <h3 className="email">{password.email}</h3>
           </div>
-
           <div className="card-buttons">
             <Button onClick={openModal} type="button" text={<TiSpanner />} />
             <Button
@@ -106,9 +130,25 @@ export function FolderCard({ password }: IPasswordCard) {
           <SubMenu title="Mover para a pasta">
             <BiChevronRight />
             <div className="submenu-item-container">
-              <MenuItem className="submenu-item menu-item">None</MenuItem>
-              <MenuItem className="submenu-item menu-item">GOOGLE</MenuItem>
-              <MenuItem className="submenu-item menu-item">SNOW</MenuItem>
+              {!getFileNames().includes("NONE") && (
+                <MenuItem
+                  onClick={movePassword}
+                  className="submenu-item menu-item"
+                >
+                  NONE{" "}
+                </MenuItem>
+              )}
+              {getFileNames().map((fileName) => {
+                return (
+                  <MenuItem
+                    data={{ item: fileName }}
+                    onClick={movePassword}
+                    className="submenu-item menu-item"
+                  >
+                    {fileName}
+                  </MenuItem>
+                );
+              })}
             </div>
           </SubMenu>
         </div>

@@ -42,7 +42,7 @@ export function ModalComponent({
     if (validationResult) {
       formRef.current.setErrors(validationResult);
     } else {
-      await PasswordManager.createUserPassword(formData);
+      await PasswordManager.createUserPassword(formData, formData.file);
       const allFiles = await getFiles();
       mutate(allFiles);
       closeModal();
