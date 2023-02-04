@@ -24,14 +24,14 @@ export function Header() {
         {<MdOutlineSort />}
       </button>
       <h2>Almaden...</h2>
-      <button className="header-button" type="button">
-        {<BiSearchAlt2 />}
-      </button>
-      <input
-        type="text"
-        placeholder="Pesquisar no meu cofre"
-        onChange={({ target }) => handlerFilter(target)}
-      />
+      <div>
+        <BiSearchAlt2 className="search-icon" />
+        <input
+          type="text"
+          placeholder="Pesquisar no meu cofre"
+          onChange={({ target }) => handlerFilter(target)}
+        />
+      </div>
     </S.Header>
   );
 }
