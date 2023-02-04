@@ -9,7 +9,7 @@ import useFetch from "hooks/swrHook";
 
 import PasswordManager from "utils/fileSystemFunctions";
 
-import { getFiles } from "services/api/filesApi";
+import { addPasswordToFile, getFiles } from "services/api/filesApi";
 
 import { ModalComponent } from "components/Modal";
 import { Button } from "components/Buttons";
@@ -29,6 +29,19 @@ export function FolderCard({ password }: IPasswordCard) {
 
   const copyToClipBoard = (text: string) => {
     navigator.clipboard.writeText(text);
+  };
+
+  const clonePassword = async () => {
+    const CLONE_ID = 999;
+
+    const passwordClone = {
+      ...password,
+      id: password.id + CLONE_ID,
+    };
+
+    await PasswordManager.createUserPassword(passwordClone);
+    const allFiles = await getFiles();
+    mutate(allFiles);
   };
 
   const openModal = () => {
@@ -76,7 +89,9 @@ export function FolderCard({ password }: IPasswordCard) {
         <MenuItem className="menu-item" onClick={handleDeleteCard}>
           Excluir
         </MenuItem>
-        <MenuItem className="menu-item">Clonar</MenuItem>
+        <MenuItem className="menu-item" onClick={clonePassword}>
+          Clonar
+        </MenuItem>
         <MenuItem divider />
         <MenuItem
           className="menu-item"
