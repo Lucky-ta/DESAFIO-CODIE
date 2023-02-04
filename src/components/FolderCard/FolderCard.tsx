@@ -11,16 +11,16 @@ import { BiTrash, BiChevronRight } from "react-icons/bi";
 import { TiSpanner } from "react-icons/ti";
 import { FaClone } from "react-icons/fa";
 
-import useFetch from "hooks/swrHook";
+import { ModalComponent } from "components/Modal";
+import { Button } from "components/Buttons";
+
+import { IPasswordCard } from "./interface";
 
 import PasswordManager from "utils/fileSystemFunctions";
 
 import { getFiles } from "services/api/filesApi";
 
-import { ModalComponent } from "components/Modal";
-import { Button } from "components/Buttons";
-
-import { IPasswordCard } from "./interface";
+import useFetch from "hooks/swrHook";
 
 import * as S from "./styles";
 

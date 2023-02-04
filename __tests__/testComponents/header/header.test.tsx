@@ -9,7 +9,7 @@ describe("Test header component", () => {
   beforeEach(() => {
     render(
       <MyProvider>
-        <Header files={[]} />
+        <Header />
       </MyProvider>
     );
   });
