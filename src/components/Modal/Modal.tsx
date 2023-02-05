@@ -6,6 +6,7 @@ import useFetch from "hooks/swrHook";
 import { FormHandles } from "@unform/core";
 import { Form } from "@unform/web";
 
+import { LoadingCircle } from "components/LoadingCircle";
 import { Button, FormButton } from "components/Buttons";
 import { Input } from "components/Inputs/Input";
 
@@ -27,24 +28,31 @@ export function ModalComponent({
   folder,
 }: IModal) {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
   const { mutate } = useFetch();
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const createFolder = async (formData: DataShape) => {
+    setIsLoading(true);
+
     const validationResult = await yupFormValidation(formData);
     if (!validationResult) {
       await PasswordManager.createPassword(formData, formData.file);
       const allFiles = await getFiles();
       mutate(allFiles);
+      setIsLoading(false);
       closeModal();
     } else {
       formRef.current?.setErrors(validationResult);
+      setIsLoading(false);
     }
   };
 
   const editFolder = async (formData: DataShape) => {
+    setIsLoading(true);
+
     const validationResult = await yupFormValidation(formData);
     if (!validationResult) {
       await PasswordManager.updatePassword(folder, formData);
@@ -54,12 +62,15 @@ export function ModalComponent({
           folder
         );
         await PasswordManager.updatePassword(result, formData);
+        setIsLoading(false);
       }
       const allFiles = await getFiles();
       mutate(allFiles);
       closeModal();
+      setIsLoading(false);
     } else {
       formRef.current?.setErrors(validationResult);
+      setIsLoading(false);
     }
   };
 
@@ -133,7 +144,7 @@ export function ModalComponent({
             Cancelar
           </FormButton>
           <FormButton className="save-button" type="submit">
-            Salvar
+            {isLoading ? <LoadingCircle /> : <span>Salvar</span>}
           </FormButton>
         </div>
       </Form>
