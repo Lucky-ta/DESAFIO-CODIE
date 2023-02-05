@@ -1,8 +1,13 @@
 {
   "passwords": [
-    
+    {
+      "url": "https://github.com/Lucky-ta/twitter2.0/blob/main/src/services/tweetApi.ts",
+      "name": "Lucas",
+      "file": "SNOW",
+      "email": "lucasmaieski@gmail.com",
+      "password": "asdfsaf",
+      "id": 2999
+    }
   ],
-  "files": [
-   
-  ]
+  "files": []
 }

@@ -1,4 +1,4 @@
-import { getFiles } from "services/api/filesApi";
+import { getFiles } from "api/filesApi";
 
 import useSWR from "swr";
 

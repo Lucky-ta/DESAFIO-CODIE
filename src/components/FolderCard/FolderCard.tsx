@@ -16,7 +16,7 @@ import { IPasswordCard } from "./interface";
 
 import PasswordManager from "utils/fileSystemFunctions";
 
-import { getFiles } from "services/api/filesApi";
+import { getFiles } from "api/filesApi";
 
 import useFetch from "hooks/swrHook";
 
@@ -27,10 +27,9 @@ export function FolderCard({ password }: IPasswordCard) {
   const { data, mutate } = useFetch();
 
   const clonePassword = async () => {
-    const CLONE_ID = 999;
     const passwordClone = {
       ...password,
-      id: password.id + CLONE_ID,
+      id: Date.now(),
     };
 
     await PasswordManager.createPassword(passwordClone, passwordClone.file);

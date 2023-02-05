@@ -1,5 +1,5 @@
-import { createPassword, deletePasswordById, updatePasswordById } from "services/api/passwordsApi";
-import * as ApiRoute from 'services/api/filesApi'
+import { createPassword, deletePasswordById, updatePasswordById } from "api/passwordsApi";
+import * as ApiRoute from 'api/filesApi'
 
 import { DataShape } from "interfaces/interfaces";
 
