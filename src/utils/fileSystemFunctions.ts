@@ -42,7 +42,7 @@ class PasswordManager {
   }
 
 
-  async movePassword(_e, fileName, password) {
+  async movePassword(fileName, password) {
     const formatedPassword = {
       ...password,
       file: fileName || "NONE",

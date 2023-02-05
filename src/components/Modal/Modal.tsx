@@ -55,7 +55,7 @@ export function ModalComponent({
       formRef.current.setErrors(validationResult);
     } else {
       if (formData.file !== folder.file) {
-        await PasswordManager.movePassword("", formData.file, folder);
+        await PasswordManager.movePassword(formData.file, folder);
 
         await PasswordManager.updateUserPassword(folder, formData);
         const allFiles = await getFiles();

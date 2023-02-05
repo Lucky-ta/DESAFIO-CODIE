@@ -42,7 +42,7 @@ export function FolderCard({ password }: IPasswordCard) {
   };
 
   const handleMovePassword = async (_e, { item: fileName }) => {
-    await PasswordManager.movePassword(_e, fileName, password);
+    await PasswordManager.movePassword(fileName, password);
     const allFiles = await getFiles();
     mutate(allFiles);
   };
