@@ -3,7 +3,6 @@ import styled from "styled-components";
 import ReactModal from "react-modal";
 
 export const Modal = styled(ReactModal)`
-
   label {
     display: flex;
     flex-direction: column;
@@ -11,6 +10,7 @@ export const Modal = styled(ReactModal)`
     margin-left: 1rem;
     margin-right: 1rem;
     gap: 1rem;
+    padding-top: 0.6rem;
   }
 
   span {
@@ -39,7 +39,6 @@ export const Modal = styled(ReactModal)`
       height: 100%;
       padding: 0;
       padding-bottom: 2rem;
-
     }
   }
 
@@ -84,16 +83,12 @@ export const Modal = styled(ReactModal)`
         bottom: 0;
         display: flex;
         align-items: center;
-        
       }
-
-
     }
 
     @media (max-width: 740px) {
       display: flex;
       flex-direction: column;
-
     }
   }
 

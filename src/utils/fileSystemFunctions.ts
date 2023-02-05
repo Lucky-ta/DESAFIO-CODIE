@@ -1,60 +1,49 @@
 import { createPassword, deletePasswordById, updatePasswordById } from "services/api/passwordsApi";
 import * as ApiRoute from 'services/api/filesApi'
 
-import { DataShape, FileShape } from "interfaces/interfaces";
+import { DataShape } from "interfaces/interfaces";
 
 class PasswordManager {
-  async createUserPassword(password: DataShape, fileName: string) {
-    const newPassword: DataShape = await createPassword(password);
-
+  async createPassword(password: DataShape, fileName: string) {
+    const newPassword = await createPassword(password);
     const allFiles = await ApiRoute.getFiles();
+    const isFileExists = allFiles.find((file) => file.fileName === fileName);
 
-    const isFileExists = allFiles.filter((file: FileShape) => file.fileName === fileName);
-
-    if (isFileExists.length !== 0) {
-      const result = await ApiRoute.addPasswordToFile(fileName, newPassword);
-      return result;
-    }
-    const result = await ApiRoute.createFile(newPassword)
-    return result;
+    return isFileExists
+      ? ApiRoute.addPasswordToFile(fileName, newPassword)
+      : ApiRoute.createFile(newPassword);
   }
 
-  async deleteUserPassword(password: DataShape) {
+  async deletePassword(password: DataShape) {
     const { file: fileName, id: passwordId } = password;
+    const { status, data } = await ApiRoute.checkIfPasswordIsUnique(fileName);
 
-    const isPasswordUnique = await ApiRoute.checkIfPasswordIsUnique(fileName);
+    await deletePasswordById(passwordId);
 
-    if (isPasswordUnique.status) {
-      await deletePasswordById(passwordId);
-      return await ApiRoute.deleteFile(isPasswordUnique.data);
-    } else {
-      await deletePasswordById(passwordId);
-      return await ApiRoute.deletePassword(fileName, isPasswordUnique.data, passwordId);
-    }
+    return status
+      ? ApiRoute.deletePasswordFile(data)
+      : ApiRoute.deletePassword(fileName, data, passwordId);
   }
 
-  async updateUserPassword(password: DataShape, formData: DataShape) {
+  async updatePassword(password: DataShape, formData: DataShape) {
     const { file: fileName } = password;
     const updatedPassword = await updatePasswordById(formData, password.id);
+    const { data: fileId } = await ApiRoute.checkIfPasswordIsUnique(fileName);
 
-    const fileId = await ApiRoute.checkIfPasswordIsUnique(fileName);
-    return await ApiRoute.updatePassword(fileName, fileId.data, updatedPassword);
+    await ApiRoute.updatePassword(fileName, fileId, updatedPassword);
+    return updatedPassword;
   }
 
-
-  async movePassword(fileName, password) {
+  async movePassword(fileName: string, password: DataShape) {
     const formatedPassword = {
       ...password,
       file: fileName || "NONE",
     };
 
-    await this.deleteUserPassword(password);
-
-    await this.createUserPassword(
-      formatedPassword,
-      formatedPassword.file
-    );
-  };
+    await this.deletePassword(password);
+    await this.createPassword(formatedPassword, formatedPassword.file);
+    return formatedPassword;
+  }
 }
 
 export default new PasswordManager();

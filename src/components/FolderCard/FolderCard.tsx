@@ -1,15 +1,13 @@
 import { useState } from "react";
-
+import { BiTrash, BiChevronRight } from "react-icons/bi";
+import { TiSpanner } from "react-icons/ti";
+import { FaClone } from "react-icons/fa";
 import {
   ContextMenu,
   ContextMenuTrigger,
   MenuItem,
   SubMenu,
 } from "react-contextmenu";
-
-import { BiTrash, BiChevronRight } from "react-icons/bi";
-import { TiSpanner } from "react-icons/ti";
-import { FaClone } from "react-icons/fa";
 
 import { ModalComponent } from "components/Modal";
 import { Button } from "components/Buttons";
@@ -25,9 +23,8 @@ import useFetch from "hooks/swrHook";
 import * as S from "./styles";
 
 export function FolderCard({ password }: IPasswordCard) {
-  const { data, mutate } = useFetch();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data, mutate } = useFetch();
 
   const clonePassword = async () => {
     const CLONE_ID = 999;
@@ -36,7 +33,7 @@ export function FolderCard({ password }: IPasswordCard) {
       id: password.id + CLONE_ID,
     };
 
-    await PasswordManager.createUserPassword(passwordClone, passwordClone.file);
+    await PasswordManager.createPassword(passwordClone, passwordClone.file);
     const allFiles = await getFiles();
     mutate(allFiles);
   };
@@ -48,7 +45,7 @@ export function FolderCard({ password }: IPasswordCard) {
   };
 
   const handleDeleteCard = async () => {
-    await PasswordManager.deleteUserPassword(password);
+    await PasswordManager.deletePassword(password);
     const allFiles = await getFiles();
     mutate(allFiles);
   };
@@ -62,21 +59,10 @@ export function FolderCard({ password }: IPasswordCard) {
     return fileNames;
   };
 
-  const redirectToUrl = () => {
-    window.open(password.url, "_blank");
-  };
-
-  const copyToClipBoard = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const copyToClipBoard = (text: string) => navigator.clipboard.writeText(text);
+  const redirectToUrl = () => window.open(password.url, "_blank");
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <S.FolderCard>

@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 import useFetch from "hooks/swrHook";
@@ -28,49 +27,43 @@ export function ModalComponent({
   folder,
 }: IModal) {
   const [showPassword, setShowPassword] = useState(false);
-
-  const formRef = useRef<FormHandles>();
-
+  const formRef = useRef<FormHandles>(null);
   const { mutate } = useFetch();
 
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+  const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const createFolder = async (formData: DataShape) => {
     const validationResult = await yupFormValidation(formData);
-    if (validationResult) {
-      formRef.current.setErrors(validationResult);
-    } else {
-      await PasswordManager.createUserPassword(formData, formData.file);
+    if (!validationResult) {
+      await PasswordManager.createPassword(formData, formData.file);
       const allFiles = await getFiles();
       mutate(allFiles);
       closeModal();
+    } else {
+      formRef.current?.setErrors(validationResult);
     }
   };
 
   const editFolder = async (formData: DataShape) => {
     const validationResult = await yupFormValidation(formData);
-    if (validationResult) {
-      formRef.current.setErrors(validationResult);
-    } else {
+    if (!validationResult) {
+      await PasswordManager.updatePassword(folder, formData);
       if (formData.file !== folder.file) {
-        await PasswordManager.movePassword(formData.file, folder);
-
-        await PasswordManager.updateUserPassword(folder, formData);
-        const allFiles = await getFiles();
-        mutate(allFiles);
-        closeModal();
+        const result = await PasswordManager.movePassword(
+          formData.file,
+          folder
+        );
+        await PasswordManager.updatePassword(result, formData);
       }
-
-      await PasswordManager.updateUserPassword(folder, formData);
       const allFiles = await getFiles();
       mutate(allFiles);
       closeModal();
+    } else {
+      formRef.current?.setErrors(validationResult);
     }
   };
 
-  const handleSubmit = (formData: DataShape) => {
+  const handleSubmit = async (formData: DataShape) => {
     switch (requestType) {
       case "POST":
         createFolder(formData);

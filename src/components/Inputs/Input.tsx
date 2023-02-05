@@ -7,7 +7,7 @@ import { IInput } from "./interface";
 import * as S from "./styles";
 
 export function Input({ name, ...rest }: IInput) {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { fieldName, registerField, defaultValue, error } = useField(name);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export function Input({ name, ...rest }: IInput) {
   return (
     <S.Input>
       <input defaultValue={defaultValue} ref={inputRef} {...rest} />
-      <span style={{ color: "red" }}>{error}</span>
+      {error && <span style={{ color: "red" }}>{error}</span>}
     </S.Input>
   );
 }

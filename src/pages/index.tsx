@@ -19,31 +19,23 @@ import * as S from "styles/home";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { simpleModalStatus, filterWord } = useContext(MyContext);
-
   const { data } = useFetch();
-  if (!data) return <span>Carregando...</span>;
+  if (!data) return <span>Loading...</span>;
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const filterData = () => {
-    const wordToLowerCase = filterWord.toString().toLowerCase();
-
-    return data.reduce((filteredFiles, object: FileShape) => {
-      const filteredPasswords = object.passwords.filter((pass: DataShape) => {
-        return Object.values(pass).some((val) =>
-          val.toString().toLowerCase().includes(wordToLowerCase)
-        );
-      });
+  const filteredData = () => {
+    const lowercaseFilter = filterWord.toString().toLowerCase();
+    return data.reduce((filteredFiles, file: FileShape) => {
+      const filteredPasswords = file.passwords.filter((password: DataShape) =>
+        Object.values(password).some((val) =>
+          val.toString().toLowerCase().includes(lowercaseFilter)
+        )
+      );
       if (filteredPasswords.length > 0) {
-        filteredFiles.push({ ...object, passwords: filteredPasswords });
+        filteredFiles.push({ ...file, passwords: filteredPasswords });
       }
       return filteredFiles;
     }, [] as FileShape[]);
@@ -55,8 +47,8 @@ export default function Home() {
       <div className="secondary">
         {simpleModalStatus && <LeftModal />}
         <div className="third">
-          <h2>Todos os itens</h2>
-          <FileSystem files={filterData()} />
+          <h2>All items</h2>
+          <FileSystem files={filteredData()} />
         </div>
       </div>
       <ModalComponent

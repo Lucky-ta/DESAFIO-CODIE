@@ -1,5 +1,4 @@
 import { useContext } from "react";
-
 import { MdOutlineSort } from "react-icons/md";
 import { BiSearchAlt2 } from "react-icons/bi";
 
@@ -11,17 +10,18 @@ export function Header() {
   const { setFilterWord, setSimpleModalStatus, simpleModalStatus } =
     useContext(MyContext);
 
-  const handlerFilter = ({ value: word }) => {
-    setFilterWord(word);
+  const handleFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterWord(event.target.value);
   };
 
   const handleModalStatus = () => {
     setSimpleModalStatus(!simpleModalStatus);
   };
+
   return (
     <S.Header>
       <button className="left-modal-button" onClick={handleModalStatus}>
-        {<MdOutlineSort />}
+        <MdOutlineSort />
       </button>
       <h2>Almaden...</h2>
       <div>
@@ -29,7 +29,7 @@ export function Header() {
         <input
           type="text"
           placeholder="Pesquisar no meu cofre"
-          onChange={({ target }) => handlerFilter(target)}
+          onChange={handleFilter}
         />
       </div>
     </S.Header>
