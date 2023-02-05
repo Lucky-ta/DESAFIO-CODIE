@@ -42,7 +42,6 @@ export function FolderCard({ password }: IPasswordCard) {
   };
 
   const movePassword = async (_e, data) => {
-    console.log(data.item);
     const formatedPassword = {
       ...password,
       file: data.item || "NONE",
