@@ -40,6 +40,21 @@ class PasswordManager {
     const fileId = await ApiRoute.checkIfPasswordIsUnique(fileName);
     return await ApiRoute.updatePassword(fileName, fileId.data, updatedPassword);
   }
+
+
+  async movePassword(_e, fileName, password) {
+    const formatedPassword = {
+      ...password,
+      file: fileName || "NONE",
+    };
+
+    await this.deleteUserPassword(password);
+
+    await this.createUserPassword(
+      formatedPassword,
+      formatedPassword.file
+    );
+  };
 }
 
 export default new PasswordManager();

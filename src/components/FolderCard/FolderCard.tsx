@@ -41,18 +41,8 @@ export function FolderCard({ password }: IPasswordCard) {
     mutate(allFiles);
   };
 
-  const movePassword = async (_e, data) => {
-    const formatedPassword = {
-      ...password,
-      file: data.item || "NONE",
-    };
-
-    await PasswordManager.deleteUserPassword(password);
-
-    await PasswordManager.createUserPassword(
-      formatedPassword,
-      formatedPassword.file
-    );
+  const handleMovePassword = async (_e, { item: fileName }) => {
+    await PasswordManager.movePassword(_e, fileName, password);
     const allFiles = await getFiles();
     mutate(allFiles);
   };
@@ -131,17 +121,18 @@ export function FolderCard({ password }: IPasswordCard) {
             <div className="submenu-item-container">
               {!getFileNames().includes("NONE") && (
                 <MenuItem
-                  onClick={movePassword}
+                  onClick={handleMovePassword}
                   className="submenu-item menu-item"
                 >
                   NONE{" "}
                 </MenuItem>
               )}
-              {getFileNames().map((fileName) => {
+              {getFileNames().map((fileName, index) => {
                 return (
                   <MenuItem
+                    key={index}
                     data={{ item: fileName }}
-                    onClick={movePassword}
+                    onClick={handleMovePassword}
                     className="submenu-item menu-item"
                   >
                     {fileName}
