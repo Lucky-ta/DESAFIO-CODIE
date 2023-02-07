@@ -104,9 +104,8 @@ Após rodar o comando, o servidor json vai estar rodando localmente na sua máqu
 │   ├───hooks
 │   ├───interfaces
 │   ├───pages
-│   ├───services
-│   │   └───api
-│   │       └───apiUrls
+│   ├───api
+│   │   └───apiRoutes
 │   ├───styles
 │   └───utils
 │       ├───formatData
